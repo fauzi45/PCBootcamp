@@ -1,0 +1,42 @@
+List Command Git
+
+Setup & Config ( Pengaturan dan Konfigurasi)
+1. Git Version
+=> Melihat versi git yang ada pada pc tersebut
+=> git -v / git --version
+
+2. Git Help
+=> Melihat semua command list yang ada di git
+=> git -h / git --help
+
+3. Git Config
+=> Digunakan untuk mengatur konfigurasi tertentu seperti username, email dan password dari github maupun gitlab
+=> git config --global user.email sam@google.com -> konfigurasi untuk mengatur email
+=> git config --global user/name "sam" => konfigurasi untuk mengatur name
+=> git config --list -> melihat semua config yang sudah ada
+
+Getting And Creating Projects (Membuat Proyek)
+4. Git Init
+=> Init atau Initialize sebuah git untuk membuat sebuah repository yang berada di folder tersebut
+=> git Init
+
+5. git clone
+=> Clone atau membuat sesuatu yang sama. Git Clone biasanya digunakan untuk menyalin sebuah code dari repository online ke repository lokal
+=> git clone [nama-repository]
+
+Basic Snapshotting (Dasar)
+6. Git Add
+=> Add atau menambahkan sebuah file baru ke repository yang ingin disimpan ke repository
+=> git add . -> menambahkan seluruh file pada folder tersebut ke repository
+=> git add <nama-file> -> menambahkan suatu file ke repository
+
+7. Git Status
+=> Mengecek status sebuah repository di lokal
+=> git status
+=> git status branch -> menampilkan status sebuah branch
+
+8. Git Diff
+=> digunakan untuk membandingkan perubahan yang baru saja dilakukan dengan revisi/commit terakhir.
+=> git Diff
+
+9.
