@@ -39,4 +39,71 @@ Basic Snapshotting (Dasar)
 => digunakan untuk membandingkan perubahan yang baru saja dilakukan dengan revisi/commit terakhir.
 => git Diff
 
-9.
+9. Git commit
+=> digunakan untuk menyimpan apabila terjadi perubahan pada sebuah file
+-> git commit -m -> untuk menambahkan pesan setiap menyimpan perubahan
+=> git commit -ammend
+
+10. Git Restore
+=> digunakan untuk mengembalikan file ke versi yang terakhir yang di commit
+-> git restore <nama-file> -> nama file yang mau dikembalikan
+-> git restore  . -> semua file proyek berisi perubahan yang tidak terlacak
+
+11. Git Reset
+=> Digunakan untuk membatalkan commit dan menghapus perubahan yang belum terkirim ke staging area
+-> git reset
+
+12. Git rm
+=> Digunakan untuk menghapus file yang ingin dihapufa-spin
+-> git rm <nama-file>
+
+Branching and Merging
+13. Git Branch
+=> Digunakan untuk membuat branch atau percabangan dari sebuah repository
+-> git branch -> melihat semua branch
+-> git branch <nama-branch> -> membuat branch baru
+
+14. Git Checkout
+=> Digunakan untuk berpindah pindah branch 1 dengan branch lainnya
+-> git checkout <nama-branch>
+
+15. Git Merge
+=> Digunakan untuk mengkombinasikan sebuah branch 1 dengan branch lainnya
+-> git merge <nama-branch>
+
+16. Git Log
+=> Digunakan untuk menampilkan daftar commits yang ada di branch beserta detailnya'
+-> git log --oneline -> untuk menampilkan log 1 baris
+-> git log <nama-commit>
+
+17. Git Stash
+=> Digunakan untuk menyembunyikan perubahan yang belum dicommit
+-> git stash
+-> git stash pop -> untuk mengembalikan perubahan yang disembunyikan sebelumnya menggunakan git stash
+
+18. Git Tag
+=> Digunakan untuk menandai beberapa titik tertentu 
+-> git tag
+
+Sharing And Updating Projects 
+
+19. Git Fetch
+=> Digunakan untuk mendapatkan semua perubahan dari repository tanpa menerapkan perubahan secara lokal
+-> git fetch <nama-remote>
+
+20. Git Pull
+=> Digunakan untuk mengupdate repositori lokal dengan perubahan terbaru dari repository online
+-> git pull 
+-> git pull <nama-remote> <nama-branch>
+
+21. Git Push
+=> Digunakan untuk mengirimkan perubahan file yang dilakukan setelah commit ke remote repositori
+-> git Push
+-> git push <nama-remote> <nama-branch>
+
+22. Git remote
+=> Digunakan untuk mengelola remote ke remote repository
+-> git remote -v -> untuk mengecek remote apa saja yang sudah di inisialisasikan di repositori
+-> git remote add <nama-remote> <nama-url-git> -> untuk menambahkan remote dalam repository tersebut
+-> git remove <nama-remote> -> untuk menghapus nama remote tersebut
+-> git rename <nama-remote-dulu> <nama-remote-sekarang> -> untuk mengganti nama remote yang diinginkan
