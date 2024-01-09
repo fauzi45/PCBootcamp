@@ -9,31 +9,35 @@ function palindrome(kata) {
 }
 
 // TEST CASES
-//   console.log("Challenge 1");
-//   console.log(palindrome('katak')); // true
-//   console.log(palindrome('blanket')); // false
-//   console.log(palindrome('civic')); // true
-//   console.log(palindrome('kasur rusak')); // true
-//   console.log(palindrome('mister')); // false
+console.log("Challenge 1");
+console.log(palindrome("katak")); // true
+console.log(palindrome("blanket")); // false
+console.log(palindrome("civic")); // true
+console.log(palindrome("kasur rusak")); // true
+console.log(palindrome("mister")); // false
 
 //Challenge 2
 function hitungJumlahKata(kalimat) {
-  banyakKata = 0;
+  banyakKata = 1;
   for (let index = 0; index < kalimat.length; index++) {
     const kata = kalimat[index];
-    if (kata == " ") {
+    if (
+      kata === " " &&
+      kalimat[index + 1] !== " " &&
+      index !== kalimat.length - 1
+    ) {
       banyakKata++;
     }
   }
-  return banyakKata + 1;
+  return kalimat.length > 0 && kalimat !== " " ? banyakKata : 0;
 }
 
 // TEST CASES
-// console.log("\nChallenge 2");
+console.log("\nChallenge 2");
 console.log(hitungJumlahKata("I have a dream")); // 4
 console.log(hitungJumlahKata("Never eat shredded wheat or cake")); // 6
 console.log(hitungJumlahKata("A song to sing")); // 4
-console.log(hitungJumlahKata("I")); // 1
+console.log(hitungJumlahKata("")); // 1
 console.log(hitungJumlahKata("I believe I can code")); // 5
 
 function changeVocals(str) {
@@ -99,12 +103,12 @@ function removeSpaces(str) {
 }
 
 function passwordGenerator(name) {
-  if (name.length < 5) {
+  if (name.length < 5)
     return "Minimal Karakter yang diinputkan adalah 5 karakter";
-  }
+
   return changeVocals(setLowerUpperCase(reverseWord(removeSpaces(name))));
 }
-
+console.log("\nChallenge 3");
 console.log(passwordGenerator("Sergei Dragunov")); // 'VPNVGBRdJFGRFs'
 console.log(passwordGenerator("Dimitri Wahyudiputra")); // 'BRTVPJDVYHBwJRTJMJd'
 console.log(passwordGenerator("Alexei")); // 'JFXFLb'
@@ -112,22 +116,30 @@ console.log(passwordGenerator("Alex")); // 'Minimal karakter yang diinputkan ada
 
 //Challenge 4
 function meleeRangedGrouping(str) {
-  let groupAll = [];
-  let groupMelee = [];
-  let groupRanged = [];
-  let perGroup = "";
-  for (let index = 0; index < str.length; index++) {
-    const element = str[index];
+  if (str === "") {
+    return [];
+  }
+  let meleeGroup = [];
+  let RangedGroup = [];
+  let heroes = [];
+  // Pisahkan setiap hero dalam string
+  for (let i = 0; i < str.length; i++) {
+    const element = str[i];
     if (element !== ",") {
-        perGroup += element;
+      heroes += element;
+    } else if (element === "-") {
+      heroes += element;
     }
   }
-  groupAll.push(perGroup)
-  return groupAll;
+
+  meleeGroup.push(heroes);
+
+  return [meleeGroup, RangedGroup];
 }
 
 // TEST CASE
 
+console.log("\nChallenge 4");
 console.log(
   meleeRangedGrouping(
     "Razor-Ranged,Invoker-Ranged,Meepo-Melee,Axe-Melee,Sniper-Ranged"
@@ -135,12 +147,12 @@ console.log(
 );
 //   [ ['Razor', 'Invoker', 'Sniper'], ['Meepo', 'Axe'] ]
 
-// console.log(
-//   meleeRangedGrouping("Drow Ranger-Ranged,Chen-Ranged,Dazzle-Ranged,Io-Ranged")
-// );
+console.log(
+  meleeRangedGrouping("Drow Ranger-Ranged,Chen-Ranged,Dazzle-Ranged,Io-Ranged")
+);
 //   [ ['Drow Ranger', 'Chen', 'Dazzle', 'Io'], [] ]
 
-// console.log(meleeRangedGrouping("")); // []
+console.log(meleeRangedGrouping("")); // []
 
 function stringToArray(string) {
   let multi = [];
@@ -161,7 +173,8 @@ function stringToArray(string) {
   return multi;
 }
 
-// console.log(stringToArray("aqrst,ukaei,ffooo"));
+console.log("\nChallenge 5");
+console.log(stringToArray("aqrst,ukaei,ffooo"));
 
 // result
 // [
@@ -170,7 +183,7 @@ function stringToArray(string) {
 //   [ 'f', 'f', 'o', 'o', 'o' ]
 // ]
 
-// console.log(stringToArray("qwer,tyui,asdf,ghjk"));
+console.log(stringToArray("qwer,tyui,asdf,ghjk"));
 
 // result
 // [
