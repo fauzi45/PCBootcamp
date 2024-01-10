@@ -1,13 +1,363 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-    min-height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-image: url("../image/bgimage1.jpg");
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: "Open Sans", sans-serif;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+.nav .logo a {
+  font-family: "Open Sans";
+  font-size: 24px;
+}
+
+.home {
+  background-image: radial-gradient(
+      136.03% 54.57% at 50% 48.04%,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(0, 0, 0, 0) 60.63%,
+      #080a0b 99.74%
+    ),
+    url(/assets/image/bgimage1.jpg);
+  height: 100vh;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.nav li {
+  list-style: none;
+  display: inline-block;
+  padding: 0 20px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+.main-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 100px;
+  gap: 2rem;
+}
+
+.main-content h1 {
+  font-size: 72px;
+  font-weight: bold;
+  align-items: center;
+  color: #ffffff;
+  font-family: "Arial";
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.main-content h3 {
+  font-size: 24px;
+  font-weight: bold;
+  align-items: center;
+  color: #ffffff;
+  font-family: "Arial";
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+.main-content button {
+  width: 260px;
+  height: 60px;
+  font-size: 22px;
+  font-weight: bold;
+  background: linear-gradient(#ffb548, #f3af34);
+  border: #ffffff 2px;
+}
+
+.scroll {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 15rem;
+  gap: 0.5rem;
+}
+
+.scroll p {
+  color: #ffffff;
+  font-weight: 700;
+  font-family: "Open Sans";
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.scroll img {
+  border: #ffffff 2px;
+}
+
+.home2 {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: radial-gradient(
+      136.03% 54.57% at 50% 48.04%,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(0, 0, 0, 0) 60.63%,
+      #080a0b 99.74%
+    ),
+    url("/assets/image/bgimage2.png");
+}
+
+.kotak-hitam {
+  opacity: 0.9;
+  background: #0f0f0f;
+  height: 100vh;
+}
+.about {
+  display: flex;
+  flex-direction: column;
+  padding: 7rem 3rem;
+}
+
+.about h1 {
+  font-family: "Arial";
+  font-size: 56px;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 3px;
+}
+.about h3 {
+  font-family: "Arial";
+  font-size: 24px;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+.home3 {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-image: radial-gradient(
+      81.01% 53.57% at 30.85% 53.65%,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(0, 0, 0, 0) 19.2%,
+      rgba(4, 5, 6, 0.52) 47.48%,
+      #080a0b 99.74%
+    ),
+    url("/assets/image/bgimage3.png");
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  padding: 7rem;
+  margin-left: 50%;
+}
+
+.features h1 {
+  font-family: "Arial";
+  font-size: 56px;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 3px;
+  width: fit-content;
+}
+.features h3 {
+  font-family: "Arial";
+  font-size: 24px;
+  font-weight: 400;
+  width: fit-content;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.garis {
+  width: 3px;
+  height: 100px;
+  background-color: #ffffff;
+  border: #ffffff 1.96px;
+  margin-left: 5.9px;
+  margin-top: -4rem;
+}
+.home4 {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-image: radial-gradient(
+      50% 49.23% at 64.32% 47.1%,
+      rgba(255, 255, 255, 0) 3.36%,
+      rgba(0, 0, 0, 0) 19.22%,
+      #080a0b 99.74%
+    ),
+    url("/assets/image/bgimage4.png");
+}
+
+.requirementstitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.requirementstitle h3 {
+  font-family: Arial;
+  color: white;
+  font-weight: 400;
+  size: 14px;
+  margin: auto;
+  padding-top: 5rem;
+  justify-content: center;
+  letter-spacing: 2px;
+}
+
+.requirementscontent {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 5rem;
+}
+
+.requirementscontent h1 {
+  font-size: 56px;
+  width: 400px;
+  height: 100px;
+  text-transform: uppercase;
+  font-family: Arial;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: #ffffff;
+}
+.grid-container {
+  display: grid;
+  width: 500px;
+  margin: 5rem;
+  grid-template-columns: auto auto;
+  border: #979797 solid 1px;
+}
+
+.grid-container > div {
+  padding: 20px 0;
+  border: #979797 solid 1px;
+  font-size: 30px;
+}
+
+.item5 {
+  grid-column: 1 / span 2;
+}
+
+.home5 {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background: radial-gradient(
+      38.04% 77.62% at 24.21% 47.47%,
+      rgba(35, 15, 15, 0) 0%,
+      rgba(0, 0, 0, 0) 51.1%,
+      #080a0b 99.74%
+    ),
+    url(/assets/image/bgimage5.png);
+}
+
+.quotestitle {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  padding: 12rem 7rem;
+  gap: 2.5rem;
+}
+
+.quotestitle h1 {
+  font-size: 56px;
+  font-family: Arial;
+  letter-spacing: 3px;
+  font-weight: 400;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.quotesrow {
+  display: flex;
+  flex-direction: row;
+  padding-top: 1rem;
+}
+
+.quotesrowtitle {
+  display: flex;
+  margin: 1rem;
+}
+
+.quotesrowtitle .prof {
+  width: 65px;
+  height: 65px;
+  border-radius: 100%;
+  margin-top: -0.2rem;
+  z-index: 1;
+}
+.quotesrowtitlecolumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.quotescolumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.quotestitle p {
+  font-size: 18px;
+  font-family: "Open Sans";
+  letter-spacing: 3px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.quotestitle button {
+  width: 260px;
+  height: 60px;
+  font-size: 22px;
+  font-weight: bold;
+  background: linear-gradient(#ffb548, #f3af34);
+  border: #ffffff 2px;
+}
+
+.quotesbox {
+  width: 453px;
+  height: 183px;
+  flex-shrink: 0;
+  position: relative;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.home6 {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-color: black;
 }
