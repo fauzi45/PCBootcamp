@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -27,14 +31,14 @@ body {
   font-size: 24px;
 }
 
-.home {
+.section1 {
   background-image: radial-gradient(
       136.03% 54.57% at 50% 48.04%,
       rgba(255, 255, 255, 0) 0%,
       rgba(0, 0, 0, 0) 60.63%,
       #080a0b 99.74%
     ),
-    url(/assets/image/bgimage1.jpg);
+    url("../image/bgimage1.jpg");
   height: 100vh;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -92,10 +96,19 @@ body {
 
 .scroll {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 15rem;
+  justify-content: center;
   gap: 0.5rem;
+  bottom: 0;
+  left: 0;
+  height: 3rem;
+  position: absolute;
+  width: 100%;
+}
+
+.scroll-bot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .scroll p {
@@ -110,7 +123,7 @@ body {
   border: #ffffff 2px;
 }
 
-.home2 {
+.section2 {
   min-height: 100vh;
   background-size: cover;
   background-position: center;
@@ -121,7 +134,7 @@ body {
       rgba(0, 0, 0, 0) 60.63%,
       #080a0b 99.74%
     ),
-    url("/assets/image/bgimage2.png");
+    url("../image/bgimage2.png");
 }
 
 .kotak-hitam {
@@ -129,20 +142,26 @@ body {
   background: #0f0f0f;
   height: 100vh;
 }
-.about {
+
+.section2 .container {
+  width: 90%;
   display: flex;
-  flex-direction: column;
-  padding: 7rem 3rem;
+  padding: 7rem 7rem;
 }
 
-.about h1 {
+.section2 .about {
+  width: 50%;
+}
+
+.section2 .about h1 {
   font-family: "Arial";
   font-size: 56px;
   font-weight: 400;
   color: #ffffff;
   letter-spacing: 3px;
+  width: fit-content;
 }
-.about h3 {
+.section2 .about h3 {
   font-family: "Arial";
   font-size: 24px;
   font-weight: 400;
@@ -150,10 +169,34 @@ body {
   letter-spacing: 2px;
 }
 
-.home3 {
+.section2 .image-carousel {
+  width: 80%;
+  position: relative;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.section2 .switch-left {
+  position: absolute;
+  top: 50%;
+  left: -2rem;
+}
+.section2 .switch-right {
+  position: absolute;
+  top: 50%;
+  right: 0;
+}
+
+.section2 .carousel {
+  flex-shrink: 0;
+  object-fit: cover;
+  width: 95%;
+  margin-top: 2rem;
+}
+
+.section3 {
   min-height: 100vh;
   background-size: cover;
-  background-position: center;
   background-image: radial-gradient(
       81.01% 53.57% at 30.85% 53.65%,
       rgba(255, 255, 255, 0) 0%,
@@ -161,7 +204,7 @@ body {
       rgba(4, 5, 6, 0.52) 47.48%,
       #080a0b 99.74%
     ),
-    url("/assets/image/bgimage3.png");
+    url("../image/bgimage3.png");
 }
 
 .features {
@@ -193,20 +236,45 @@ body {
   flex-direction: row;
 }
 
+.column .row img {
+  width: 14px;
+  height: 14px;
+  margin-left: 1;
+}
+
 .column {
   display: flex;
   flex-direction: column;
 }
 
+.title {
+  text-transform: uppercase;
+  color: #ffb548;
+  letter-spacing: 2px;
+  font-weight: 400;
+  font-size: 24px;
+  font-family: Arial;
+  margin-left: 3rem;
+}
+
+.column .content {
+  color: #ffffff;
+  font-weight: 400;
+  line-height: 22px;
+  font-size: 18px;
+  font-family: Open Sans;
+  margin-left: 3rem;
+}
 .garis {
   width: 3px;
   height: 100px;
   background-color: #ffffff;
   border: #ffffff 1.96px;
-  margin-left: 5.9px;
-  margin-top: -4rem;
+  margin-bottom: -0.5rem;
+  margin-left: 6px;
+  margin-top: -3.7rem;
 }
-.home4 {
+.section4 {
   min-height: 100vh;
   background-size: cover;
   background-position: center;
@@ -216,7 +284,7 @@ body {
       rgba(0, 0, 0, 0) 19.22%,
       #080a0b 99.74%
     ),
-    url("/assets/image/bgimage4.png");
+    url("../image/bgimage4.png");
 }
 
 .requirementstitle {
@@ -270,7 +338,7 @@ body {
   grid-column: 1 / span 2;
 }
 
-.home5 {
+.section5 {
   min-height: 100vh;
   background-size: cover;
   background-position: center;
@@ -280,7 +348,7 @@ body {
       rgba(0, 0, 0, 0) 51.1%,
       #080a0b 99.74%
     ),
-    url(/assets/image/bgimage5.png);
+    url("../image/bgimage5.png");
 }
 
 .quotestitle {
@@ -311,6 +379,11 @@ body {
   margin: 1rem;
 }
 
+.quotesrowtitle .icon-tw {
+  margin-left: 10rem;
+  margin-top: -2rem;
+}
+
 .quotesrowtitle .prof {
   width: 65px;
   height: 65px;
@@ -323,6 +396,28 @@ body {
   flex-direction: column;
 }
 
+.quotesrowtitlecolumn .titlequotes {
+  color: #ffb548;
+  font-family: Arial;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2px;
+  margin-left: 1rem;
+}
+
+.quotesrowtitlecolumn .contentquotes {
+  color: #fff;
+  text-align: justify;
+  opacity: 0.5;
+  margin-left: 1rem;
+  font-family: Open Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}
 .quotescolumn {
   display: flex;
   flex-direction: column;
@@ -348,16 +443,149 @@ body {
 
 .quotesbox {
   width: 453px;
-  height: 183px;
+  height: auto;
   flex-shrink: 0;
   position: relative;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.08);
 }
 
-.home6 {
+.quotesbox .descquotes {
+  color: #fff;
+  font-family: Open Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 1rem;
+}
+
+.quotesbox .datequotes {
+  color: #fff;
+  font-family: Open Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  opacity: 0.5;
+  margin: 1rem;
+}
+.section6 {
   min-height: 100vh;
   background-size: cover;
   background-position: center;
-  background-color: black;
+  background: radial-gradient(
+    177.91% 78.74% at 19.56% 37.57%,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 0) 19.22%,
+    #080a0b 99.74%
+  );
+  background-color: #0f0f0f;
+}
+
+.section6 .container {
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+
+.section6 .container .kiri {
+  display: flex;
+  justify-content: start;
+  width: 40%;
+  padding-left: 10%;
+  padding-top: 5rem;
+}
+
+.kiri .skull {
+  background-image: radial-gradient(
+      54.01% 45.54% at 50% 50%,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(0, 0, 0, 0) 46.15%,
+      #080a0b 99.74%
+    ),
+    url("../image/skull.png");
+}
+
+.section6 .container .kanan {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 90%;
+  padding-left: 20%;
+}
+
+.kanan h3 {
+  color: #fff;
+  font-family: Arial;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 2px;
+}
+
+.kanan h1 {
+  color: #fff;
+  font-family: Arial;
+  font-size: 65px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.kanan p {
+  color: #fff;
+  font-family: Open Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 122.222% */
+}
+
+.kanan .kotak {
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+}
+
+.kotak .input-subs {
+  width: 70%;
+  height: 60px;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border: #ffffff 2px;
+  border-radius: 4px;
+  display: flex;
+  padding: 0.5rem 1.5rem;
+  flex-direction: column;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+.input-subs p{
+  color: #fff;
+  opacity: 0.5;
+  font-size: 16px;
+  font-family: "Open Sans";
+}
+.kotak .button-subs {
+  width: 30%;
+  height: 60px;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: bold;
+  background: linear-gradient(#ffb548, #f3af34);
+  border: #ffffff 2px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
 }
