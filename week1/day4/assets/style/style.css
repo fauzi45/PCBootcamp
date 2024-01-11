@@ -1,0 +1,306 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.container-kiri {
+  width: 60%;
+  background: url("../image/bgimage.png"), lightgray 50% / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-kiri-kotak {
+  width: 70%;
+  height: 70%;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(24px);
+}
+
+.container-kiri-kotak-content {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  margin: 6rem 4rem;
+}
+
+.container-kiri-kotak-content-title {
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  width: 75%;
+  font-weight: 600;
+  line-height: 120%; /* 57.6px */
+}
+.container-kiri-kotak-content-desc {
+  font-family: "Inter", sans-serif;
+  color: #3e334e;
+  font-family: Inter;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 48px */
+}
+.container-kiri-kotak-content-quotes {
+  font-family: "Inter", sans-serif;
+  color: #3e334e;
+  margin-top: 2rem;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 27px */
+}
+
+.container-kanan {
+  width: 40%;
+  height: 100vh;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+}
+
+.container-kanan-kotak {
+  width: 75%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  gap: 1;
+}
+
+.container-kanan-kotak-header {
+  display: flex;
+  flex-direction: row;
+  margin: 2rem;
+}
+
+.container-kanan-kotak-header p {
+  color: #3e334e;
+  font-family: "Inter", sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 32px */
+  margin: 1rem;
+}
+
+.container-kanan-kotak-welcome {
+  display: flex;
+  flex-direction: column;
+  margin: 0 2rem 2rem 2rem;
+}
+
+.container-kanan-kotak-welcome-title {
+  color: #3e334e;
+  font-family: "Inter", sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 48px */
+}
+.container-kanan-kotak-welcome-desc {
+  color: #3e334e;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 27px */
+}
+
+.container-kanan-kotak-login {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-kanan-kotak-login-square {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 80%;
+  /* 16px */
+}
+
+.container-kanan-kotak-login-square-kotakemail {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-kanan-kotak-login-square-email {
+  color: #3e334e;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+}
+
+.container-kanan-kotak-login-square-inputemail {
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  border: 1px solid #afa2c3;
+  background: rgba(255, 255, 255, 0);
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+}
+.container-kanan-kotak-login-square-kotakpassword {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-kanan-kotak-login-square-kotakpassword i {
+  cursor: pointer;
+  position: absolute;
+  margin-top: 1.5rem;
+  margin-left: 22%;
+}
+
+.container-kanan-kotak-login-square-password {
+  color: #3e334e;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+}
+
+.container-kanan-kotak-login-square-inputpassword-kotak {
+  display: flex;
+  flex-direction: row;
+}
+
+.container-kanan-kotak-login-square-inputpassword {
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  border: 1px solid #afa2c3;
+  background: rgba(255, 255, 255, 0);
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.container-kanan-kotak-login-square-remember {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.container-kanan-kotak-login-square-remember-checkbox_remember {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+.container-kanan-kotak-login-square-remember-checkbox_remember input {
+  accent-color: #a03cea;
+}
+.container-kanan-kotak-login-square-remember-text {
+  color: #3e334e;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 16px */
+}
+
+.container-kanan-kotak-login-square-remember-forgot {
+  text-decoration: none;
+  color: #3e334e;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  line-height: 100%; /* 16px */
+}
+
+.container-kanan-kotak-login-square-remember-forgot:hover {
+  text-decoration: underline;
+}
+
+.container-kanan-kotak-login-square-button {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-kanan-kotak-login-square-button-login {
+  border-radius: 8px;
+  border: 1px solid
+    var(--warm-gradient, linear-gradient(270deg, #fb6564 0%, #a03cea 100%));
+  background: var(
+    --warm-gradient,
+    linear-gradient(270deg, #fb6564 0%, #a03cea 100%)
+  );
+  cursor: pointer;
+  display: flex;
+  width: 45%;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+}
+.container-kanan-kotak-login-square-button-signup {
+  border-radius: 8px;
+  display: flex;
+  cursor: pointer;
+  border: 1px solid #3e334e;
+  width: 45%;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  color: #3e334e;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.container-kanan-kotak-login-social {
+  margin-top: 1rem;
+  display: flex;
+  gap: 16px;
+  width: 80%;
+  flex-direction: column;
+}
+
+.container-kanan-kotak-login-social-text {
+  color: #3e334e;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 14px */
+}
+
+.container-kanan-kotak-login-social-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.container-kanan-kotak-login-social-button-btn {
+  display: flex;
+  padding: 12px 16px;
+  justify-content: center;
+  align-items: flex-start;
+}

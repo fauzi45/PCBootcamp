@@ -1,0 +1,77 @@
+@media only screen and (max-width: 992px) {
+  .container-kiri {
+    width: 45%;
+  }
+
+  .container-kiri-kotak {
+    width: 60%;
+  }
+  .container-kiri-kotak-content {
+    margin: 3rem 2rem;
+  }
+
+  .container-kiri-kotak-content-title {
+    font-size: 30px;
+  }
+  .container-kiri-kotak-content-desc {
+    font-size: 40px;
+  }
+  .container-kanan {
+    width: 55%;
+  }
+
+  .container-kanan-kotak-login-square-kotakpassword i {
+    margin-left: 34%;
+  }
+
+  .container-kanan-kotak-login-square{
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container-kiri {
+    display: none;
+  }
+  
+  .container-kanan {
+    width: 100%;
+    border-radius: 24px 24px 0px 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.62) 41.98%,
+      rgba(255, 255, 255, 0.8) 100%
+    ), url("../image/bgimagemobile.png")
+      ;
+    -webkit-border-radius: 24px 24px 0px 0px;
+    -moz-border-radius: 24px 24px 0px 0px;
+    -ms-border-radius: 24px 24px 0px 0px;
+    -o-border-radius: 24px 24px 0px 0px;
+  }
+  .container-kanan-kotak-login-square-kotakpassword i {
+    margin-left: 63%;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .container-kanan-kotak-login-square-remember-forgot {
+    font-size: 12px;
+  }
+  .container-kanan-kotak-login-square-remember-checkbox_remember-text {
+    font-size: 12px;
+  }
+  .container-kanan-kotak-login-square {
+    width: 100%;
+  }
+  .container-kanan-kotak-login-social {
+    width: 100%;
+  }
+  .container-kanan-kotak-login-square-kotakpassword i {
+    margin-left: 68%;
+  }
+  .container-kanan-kotak-welcome-title {
+    font-size: 26px;
+  }
+}
