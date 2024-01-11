@@ -58,6 +58,9 @@ body {
   letter-spacing: 3px;
 }
 
+.nav a:hover{
+  opacity: 0.5;
+}
 .main-content {
   display: flex;
   align-items: center;
@@ -606,8 +609,7 @@ body {
 
 .input-subs p {
   color: #fff;
-  opacity: 0.5;
-  font-size: 16px;
+  font-size: 14px;
   font-family: "Open Sans";
 }
 .kotak .button-subs {
@@ -670,6 +672,10 @@ body {
   line-height: normal;
   letter-spacing: 1.2px;
   text-transform: uppercase;
+}
+
+.footbar a:hover{
+  opacity: 0.5;
 }
 
 .footbar .icon-social {
