@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./assets/css/style-calc.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator</title>
+  </head>
+  <body>
+    <div class="container-calc">
+      <div class="container-calc-atas">
+        <div class="container-calc-row-number">
+          <p class="container-calc-number">1</p>
+          <p class="container-calc-number">2</p>
+          <p class="container-calc-number">3</p>
+        </div>
+        <div class="container-calc-header">
+          <p class="container-calc-header-logo">calc</p>
+          <div class="container-calc-header-switch">
+            <p class="container-calc-header-switch-title">THEME</p>
+            <div class="tri-state-toggle">
+              <input
+                class="button"
+                type="radio"
+                name="theme"
+                id="blue"
+                checked
+              />
+              <input class="button" type="radio" name="theme" id="white" />
+              <input class="button" type="radio" name="theme" id="purple" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-calc-input-number">
+        <p class="userEntry"></p>
+        <p class="finalCalc"></p>
+      </div>
+      <div class="container-calc-kotak-number">
+        <div class="container-calc-kotak-number-container">
+          <button class="container-calc-kotak-number-button">7</button>
+          <button class="container-calc-kotak-number-button">8</button>
+          <button class="container-calc-kotak-number-button">9</button>
+          <button class="container-calc-kotak-number-button-delete">DEL</button>
+        </div>
+        <div class="container-calc-kotak-number-container">
+          <button class="container-calc-kotak-number-button">4</button>
+          <button class="container-calc-kotak-number-button">5</button>
+          <button class="container-calc-kotak-number-button">6</button>
+          <button class="container-calc-kotak-number-button">+</button>
+        </div>
+        <div class="container-calc-kotak-number-container">
+          <button class="container-calc-kotak-number-button">1</button>
+          <button class="container-calc-kotak-number-button">2</button>
+          <button class="container-calc-kotak-number-button">3</button>
+          <button class="container-calc-kotak-number-button">-</button>
+        </div>
+        <div class="container-calc-kotak-number-container">
+          <button class="container-calc-kotak-number-button">.</button>
+          <button class="container-calc-kotak-number-button">0</button>
+          <button class="container-calc-kotak-number-button">/</button>
+          <button class="container-calc-kotak-number-button">*</button>
+        </div>
+        <div class="container-calc-kotak-number-container">
+          <button class="container-calc-kotak-number-button-reset">RESET</button>
+          <button class="container-calc-kotak-number-button-bawah">=</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./assets/js/script-calc.js"></script>
+</html>
