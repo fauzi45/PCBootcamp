@@ -68,6 +68,12 @@ document.addEventListener("keydown", (event) => {
 
         storeValue();
         break;
+      case ".":
+        operator.splice(0, 1, this.innerHTML);
+        console.log(operator);
+
+        storeValue();
+        break;
       case "/":
         operator.splice(0, 1, this.innerHTML);
         console.log(operator);
