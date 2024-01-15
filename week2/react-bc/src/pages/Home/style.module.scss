@@ -9,7 +9,7 @@
   height: 100vh;
 
   .stars {
-    background-image: url("./assets/images/bg-stars.svg");
+    background-image: url("../../assets/images/bg-stars.svg");
     height: 100vh;
     .container {
       height: 100vh;
@@ -19,25 +19,30 @@
       align-items: center;
       gap: 3rem;
       .hills {
-        background-size: contain;
-        background-repeat: no-repeat;
+        background-size: cover;
         width: 100vw;
         position: absolute;
         bottom: 0;
+        height: 20vh;
       }
       .textTitle {
         font-size: $Font-Size;
         font-family: $Font-Family;
         color: $White;
         font-weight: $Weights;
+        text-align: center;
+        @include apply-at-xs-size {
+          align-items: center;
+          justify-content: center;
+        }
         letter-spacing: 0.5rem;
       }
       .containerCardClock {
         width: 50%;
-        @include apply-at-xs-size{
-          width: 90%;
+        @include apply-at-xs-size {
+          width: 100%;
         }
-        @include apply-at-sm-size{
+        @include apply-at-sm-size {
           width: 90%;
         }
         @include directionY;
@@ -50,6 +55,11 @@
           .cardDesc {
             width: 100px;
             height: 50px;
+            @include apply-at-xs-size {
+              font-size: 6px;
+              width: 50px;
+              height: 50px;
+            }
             @include directionX;
             justify-content: center;
             align-items: center;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import Card from "../../components/Card/Index";
 
@@ -10,12 +10,12 @@ import instagram from "../../assets/images/icon-instagram.svg";
 import pinterest from "../../assets/images/icon-pinterest.svg";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-
   const leading0 = (num) => {
     return num < 10 ? "0" + num : num;
   };
@@ -27,7 +27,6 @@ const Home = () => {
       setHours(0);
       setMinutes(0);
       setSeconds(0);
-      
     } else {
       setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
       setHours(Math.floor((time / (1000 * 60 * 60)) % 24));

@@ -1,5 +1,35 @@
-@import '../../styles/base.scss';
+@import "../../styles/base.scss";
 
 .container {
   @include card;
+  .halfCircleLeft {
+    position: absolute;
+    width: 5px;
+    border-radius: 0 5rem 5rem 0;
+    margin-right: 95px;
+    height: 10px;
+    @include apply-at-xs-size{
+      margin-left: 50px;
+    }
+    background-color: $Very-DM-Blue;
+    -webkit-border-radius: 0 5rem 5rem 0;
+    -moz-border-radius: 0 5rem 5rem 0;
+    -ms-border-radius: 0 5rem 5rem 0;
+    -o-border-radius: 0 5rem 5rem 0;
+  }
+  .halfCircleRight {
+    position: absolute;
+    width: 5px;
+    border-radius: 5rem 0 0 5rem;
+    margin-left: 95px;
+    height: 10px;
+    @include apply-at-xs-size{
+      margin-right: 50px;
+    }
+    background-color: $Very-DM-Blue;
+    -webkit-border-radius: 5rem 0 0 5rem;
+    -moz-border-radius: 5rem 0 0 5rem;
+    -ms-border-radius: 5rem 0 0 5rem;
+    -o-border-radius: 5rem 0 0 5rem;
+}
 }
