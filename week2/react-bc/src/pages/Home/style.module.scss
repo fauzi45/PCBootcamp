@@ -1,0 +1,79 @@
+@import "../../styles/base.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+.backgroundColor {
+  background-color: $Very-DM-Blue;
+  height: 100vh;
+
+  .stars {
+    background-image: url("./assets/images/bg-stars.svg");
+    height: 100vh;
+    .container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+      .hills {
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 100vw;
+        position: absolute;
+        bottom: 0;
+      }
+      .textTitle {
+        font-size: $Font-Size;
+        font-family: $Font-Family;
+        color: $White;
+        font-weight: $Weights;
+        letter-spacing: 0.5rem;
+      }
+      .containerCardClock {
+        width: 50%;
+        @include apply-at-xs-size{
+          width: 90%;
+        }
+        @include apply-at-sm-size{
+          width: 90%;
+        }
+        @include directionY;
+        justify-content: center;
+        .containerCard {
+          width: 100%;
+          @include directionX;
+          justify-content: center;
+          gap: 1.5rem;
+          .cardDesc {
+            width: 100px;
+            height: 50px;
+            @include directionX;
+            justify-content: center;
+            align-items: center;
+            font-size: $Font-Size;
+            color: $Grayish-Blue;
+            letter-spacing: 3px;
+            font-family: $Font-Family;
+            font-weight: $Weights;
+          }
+        }
+      }
+      .socialMedia {
+        width: 100%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        bottom: 0;
+        margin-bottom: 2rem;
+      }
+      .socialMedia a {
+        cursor: pointer;
+      }
+    }
+  }
+}

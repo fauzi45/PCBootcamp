@@ -1,0 +1,25 @@
+@mixin card {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+  font-size: 52px;
+  color: $Soft-Red;
+  font-family: $Font-Family;
+  font-weight: $Weights;
+  background: linear-gradient(
+    to bottom,
+    $Dark-Desaturated-Blue-Dark 0%,
+    $Dark-Desaturated-Blue-Dark 50%,
+    $Dark-Desaturated-Blue 50%,
+    $Dark-Desaturated-Blue 100%
+  );
+  box-shadow: 0 10px 10px #000000;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}

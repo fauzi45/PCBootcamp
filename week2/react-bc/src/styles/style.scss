@@ -1,0 +1,130 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url(https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap);
+}
+
+//Primary
+$Grayish-Blue: hsl(237, 18%, 59%);
+$Soft-Red: hsl(345, 95%, 68%);
+
+
+//Neutral
+$White: hsl(0, 0%, 100%);
+$Dark-Desaturated-Blue: hsl(236, 21%, 26%);
+$Dark-Desaturated-Blue-Dark: hsla(236, 21%, 20%);
+$Very-Dark-Blue: hsl(235, 16%, 14%);
+$Very-DM-Blue: hsl(234, 17%, 12%);
+
+
+//BodyCopy
+$Font-Size: 14px;
+//Font
+
+$Font-Family: 'Red Hat Text', sans-serif;
+$Weights: 700;
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.background-image{
+    background-color: $Very-DM-Blue;
+    height: 100vh;
+}
+
+.stars{
+    background-image: url('./assets/images/bg-stars.svg');
+    height: 100vh;
+    background-size: contain;
+}
+
+.hills{
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+}
+
+.container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.title-text{
+    font-size: $Font-Size;
+    font-family: $Font-Family;
+    color: $White;
+    font-weight: $Weights;
+    letter-spacing: 0.5rem;
+}
+
+.container-card-clock{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.container-card{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.card{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 52px;
+    color: $Soft-Red;
+    font-family: $Font-Family;
+    font-weight: $Weights;
+    background: linear-gradient(
+        to bottom,
+        $Dark-Desaturated-Blue-Dark 0%,
+        $Dark-Desaturated-Blue-Dark 50%,
+        $Dark-Desaturated-Blue 50%,
+        $Dark-Desaturated-Blue 100%
+      );
+      box-shadow: 0 10px 10px #000000;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.card-desc{
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $Font-Size;
+    color: $Grayish-Blue;
+    letter-spacing: 3px;
+    font-family: $Font-Family;
+    font-weight: $Weights;
+}
+
+.social-media{
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    bottom: 0;
+}
+.social-media a{
+    cursor: pointer;
+}
