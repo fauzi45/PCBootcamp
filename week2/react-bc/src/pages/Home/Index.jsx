@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
-import Card from "../../components/Card/Index";
+import Card from "../../components/Card";
 
 import classes from "./style.module.scss";
 import hills from "../../assets/images/pattern-hills.svg";

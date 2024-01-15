@@ -4,9 +4,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home/Index";
 const router = createBrowserRouter([
   {
-    path: "/countdown",
-    element: <Home />,
+    path: "/",
+    element: <Home/>
   },
+  {
+    path: "/countdown",
+    element: <Home/>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
