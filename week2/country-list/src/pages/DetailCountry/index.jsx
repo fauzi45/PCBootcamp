@@ -15,7 +15,6 @@ const DetailCountry = () => {
 
   return (
     <div className={classes.container}>
-      <Navbar />
       <button className={classes.buttonBack} onClick={handleBack}>
         <KeyboardBackspaceIcon />
         Back
@@ -63,15 +62,17 @@ const DetailCountry = () => {
           </div>
           <div className={classes.borders}>
             <p>Border Countries:</p>
-            {data.borders ? (
-              Object.values(data.borders).map((data, index) => (
-                <div key={index} className={classes.kotak}>
-                  {data}
-                </div>
-              ))
-            ) : (
-              <div className={classes.kotak}>none</div>
-            )}
+            <div>
+              {data.borders ? (
+                Object.values(data.borders).map((data, index) => (
+                  <div key={index} className={classes.kotak}>
+                    {data}
+                  </div>
+                ))
+              ) : (
+                <div className={classes.kotak}>none</div>
+              )}
+            </div>
           </div>
         </div>
       </div>

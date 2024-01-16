@@ -27,17 +27,82 @@
   .content {
     width: 100%;
     @include directionX;
+    @include apply-at-xs-size {
+      @include directionY;
+    }
+    @include apply-at-sm-size {
+      @include directionY;
+    }
+    @include apply-at-md-size {
+      @include directionY;
+    }
+    @include apply-at-lg-size {
+      @include directionX;
+    }
+    @include apply-at-xl-size {
+      @include directionX;
+    }
   }
   .contentKiri {
     width: 50%;
+    display: flex;
+    justify-content: center;
+    @include apply-at-xs-size {
+      width: 80%;
+    }
+    @include apply-at-sm-size {
+      width: 80%;
+    }
+    @include apply-at-md-size {
+      width: 80%;
+    }
+    @include apply-at-lg-size {
+      width: 50%;
+    }
+    @include apply-at-xl-size {
+      width: 50%;
+    }
     .image {
       width: 455px;
       height: 300px;
       margin-left: 50px;
+      @include apply-at-xs-size {
+        width: 80%;
+        height: 80%;
+      }
+      @include apply-at-sm-size {
+        width: 75%;
+      }
+      @include apply-at-md-size {
+        width: 70%;
+      }
+      @include apply-at-lg-size {
+        width: 70%;
+      }
+      @include apply-at-xl-size {
+        width: 455px;
+      }
     }
   }
   .contentKanan {
     width: 50%;
+    @include apply-at-xs-size {
+      width: 90%;
+    }
+    @include apply-at-sm-size {
+      width: 80%;
+    }
+    @include apply-at-md-size {
+      width: 75%;
+    }
+    @include apply-at-lg-size {
+      width: 70%;
+    }
+    @include apply-at-xl-size {
+      width: 50%;
+    }
+    margin: auto;
+   
     .title {
       font-size: 32px;
       font-weight: $FontWeights800;
@@ -62,9 +127,12 @@
       margin-top: 4rem;
       align-items: center;
       gap: 0.5rem;
+      @include apply-at-xs-size {
+        @include directionY;
+      }
     }
     .kotak {
-        border: $VeryDarkBlueBackground solid 1px;
+      border: $VeryDarkBlueBackground solid 1px;
       color: $VeryDarkBlueLightModeText;
       padding: 10px 26px;
       text-align: center;

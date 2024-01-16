@@ -15,11 +15,13 @@
     @include directionX;
     justify-content: space-between;
     padding: 0px 80px;
-    @include apply-at-xs-size{
-        @include directionY;
+    @include apply-at-xs-size {
+      @include directionY;
+      height: 140px;
+      margin-bottom: 2rem;
     }
     .filterInput {
-      width: 400px;
+      width: 50%;
       height: 56px;
       box-sizing: border-box;
       border: 2px solid #ccc;
@@ -30,29 +32,47 @@
       background-position: 10px 14px;
       background-repeat: no-repeat;
       padding: 12px 20px 12px 40px;
+      @include apply-at-xs-size {
+        width: 100%;
+      }
     }
-    .filterSelect{
-        width: 15%;
-        height: 56px;
+    .filterSelect {
+      width: 15%;
+      height: 56px;
+      @include apply-at-xs-size {
+        width: 70%;
+      }
+      @include apply-at-sm-size {
+        width: 40%;
+      }
+      @include apply-at-md-size {
+        width: 39%;
+      }
+      @include apply-at-lg-size {
+        width: 25%;
+      }
+      @include apply-at-xl-size {
+        width: 20%;
+      }
     }
   }
-  .CardItem{
+  .CardItem {
     display: grid;
     margin: auto;
     justify-content: center;
     align-items: center;
     gap: 40px;
-    @include apply-at-xs-size{
-      grid-template-columns: repeat(1 , 1fr);
+    @include apply-at-xs-size {
+      grid-template-columns: repeat(1, 1fr);
     }
-    @include apply-at-sm-size{
-      grid-template-columns: repeat(2 , 1fr);
+    @include apply-at-sm-size {
+      grid-template-columns: repeat(2, 1fr);
     }
-    @include apply-at-lg-size{
-      grid-template-columns: repeat(3 , 1fr);
+    @include apply-at-lg-size {
+      grid-template-columns: repeat(3, 1fr);
     }
-    @include apply-at-xl-size{
-      grid-template-columns: repeat(4 , 1fr);
+    @include apply-at-xl-size {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 }
