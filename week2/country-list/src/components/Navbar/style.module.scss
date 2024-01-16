@@ -1,0 +1,32 @@
+@import '../../styles/base.scss';
+
+.header {
+    @include directionX;
+    height: 80px;
+    background-color: $WhiteDarkModeText;
+    justify-content: space-between;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
+    padding: 0px 80px;
+    @include apply-at-xs-size {
+      padding: 0px 20px;
+    }
+    .headerLogo {
+      height: 80px;
+      font-weight: $FontWeights700;
+      font-size: 25px;
+      @include apply-at-xs-size {
+        font-size: 18px;
+      }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .buttonMode {
+      height: 80px;
+      color: $VeryDarkBlueLightModeText;
+      font-weight: $FontWeights400;
+      text-transform: capitalize;
+      background-color: $WhiteDarkModeText;
+      border: $WhiteDarkModeText solid 1px;
+    }
+  }

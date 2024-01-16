@@ -1,0 +1,40 @@
+@import "../../styles/base.scss";
+
+.box {
+  width: 265px;
+  height: 335px;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.15);
+  @include directionY;
+  cursor: pointer;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  .image {
+    height: 159px;
+  }
+  .boxContent {
+    padding: 24px 24px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    .title {
+      color: $VeryDarkBlueLightModeText;
+      font-size: 18px;
+      font-weight: $FontWeights700;
+      text-transform: capitalize;
+      margin-bottom: 1rem;
+    }
+    p {
+      color: $VeryDarkBlueBackground;
+      font-size: 14px;
+      font-weight: $FontWeights500;
+    }
+    span {
+      font-size: 14px;
+      color: $DarkGrayLightModeInput;
+      font-weight: $FontWeights400;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+@import "../../styles/base.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: 100%;
+  height: auto;
+  @include directionY;
+
+  .filter {
+    margin-top: 47px;
+    height: 80px;
+    @include directionX;
+    justify-content: space-between;
+    padding: 0px 80px;
+    @include apply-at-xs-size{
+        @include directionY;
+    }
+    .filterInput {
+      width: 400px;
+      height: 56px;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      background-color: white;
+      background-image: url("../../assets/icons/Search_Magnifying_Glass.svg");
+      background-position: 10px 14px;
+      background-repeat: no-repeat;
+      padding: 12px 20px 12px 40px;
+    }
+    .filterSelect{
+        width: 15%;
+        height: 56px;
+    }
+  }
+  .CardItem{
+    display: grid;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    @include apply-at-xs-size{
+      grid-template-columns: repeat(1 , 1fr);
+    }
+    @include apply-at-sm-size{
+      grid-template-columns: repeat(2 , 1fr);
+    }
+    @include apply-at-lg-size{
+      grid-template-columns: repeat(3 , 1fr);
+    }
+    @include apply-at-xl-size{
+      grid-template-columns: repeat(4 , 1fr);
+    }
+  }
+}
