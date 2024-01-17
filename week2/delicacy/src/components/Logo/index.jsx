@@ -1,8 +1,8 @@
 import classes from "./style.module.scss";
 
-const Logo = () => {
+const Logo = ({onClick}) => {
     return(
-        <div className={classes.container}>
+        <div onClick={onClick} className={classes.container}>
             Delicacy
         </div>
     )

@@ -1,12 +1,13 @@
 import classes from "./style.module.scss";
-import piring from "../../assets/images/piring1.png";
 
-const MiniBox = () => {
+const MiniBox = ({ logo, title, onClick }) => {
   return (
-    <div className={classes.container}>
-      <img src={piring} className={classes.img} />
-      <div className={classes.content}>
-        <p>Beef Steak</p>
+    <div>
+      <div className={classes.container} onClick={onClick}>
+        <img src={logo} className={classes.img} />
+        <div className={classes.content}>
+          <p>{title}</p>
+        </div>
       </div>
     </div>
   );

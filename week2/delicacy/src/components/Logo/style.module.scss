@@ -3,7 +3,9 @@
 .container {
   color: $fontTextPrimary;
   font-size: 44.242px;
+  width: fit-content;
   font-weight: $FontWeight700;
   padding: 1rem 2rem;
+  cursor: pointer;
   font-family: 'Archivo Narrow', sans-serif;
 }

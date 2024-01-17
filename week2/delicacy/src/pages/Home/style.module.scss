@@ -5,13 +5,17 @@
   @include directionY;
   .topNavbar {
     @include directionX;
-    color: $fontTextPrimary;
+    color: $fontTextSecondary;
+    overflow-x: scroll;
     font-family: "Roboto", sans-serif;
     font-size: 17.525px;
     font-weight: $FontWeight500;
     cursor: pointer;
     gap: 2rem;
     padding-left: 4rem;
+    .active {
+      color: $fontTextPrimary;
+    }
   }
   .textMore {
     color: $fontTextPrimary;
@@ -24,6 +28,13 @@
     @include directionX;
     overflow-x: scroll;
     gap: 10rem;
+    .containerLoading {
+      @include directionX;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      font-size: 40px;
+    }
   }
   .content::-webkit-scrollbar {
     display: none;

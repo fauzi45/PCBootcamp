@@ -5,13 +5,16 @@
   @include directionY;
   .topNavbar {
     @include directionX;
-    color: $fontTextPrimary;
+    color: $fontTextSecondary;
     font-family: "Roboto", sans-serif;
     font-size: 17.525px;
     font-weight: $FontWeight500;
     cursor: pointer;
     gap: 2rem;
     padding-left: 4rem;
+    .active {
+      color: $fontTextPrimary;
+    }
   }
   .content {
     width: 100%;

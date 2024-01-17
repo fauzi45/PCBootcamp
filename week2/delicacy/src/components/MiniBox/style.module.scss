@@ -2,6 +2,7 @@
 
 .container {
   width: 142px;
+  cursor: pointer;
   height: 165px;
   @include directionY;
   justify-content: center;
@@ -11,7 +12,12 @@
     height: 94px;
     position: absolute;
     margin-bottom: 6rem;
-  }
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+}
   .content {
     height: 130px;
     width: 100%;
@@ -23,7 +29,8 @@
     p {
       color: $fontTextBlack;
       font-family: "Roboto", sans-serif;
-      font-size: 15px;
+      font-size: 12px;
+      text-align: center;
       font-weight: $FontWeight500;
     }
   }

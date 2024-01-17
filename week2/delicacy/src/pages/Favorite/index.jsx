@@ -1,19 +1,32 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import { callAPI } from "../../domain/api";
+import { callAPI, callAPIJSON } from "../../domain/api";
 
 import MiniBox from "../../components/MiniBox";
 import TopCategories from "../../components/TopCategories";
 import classes from "./style.module.scss";
+import Logo from "../../components/Logo";
 
 const Favorite = () => {
   const [category, setCategory] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [activeCategory, setActiveCategory] = useState("favorite");
   const navigate = useNavigate();
 
   const handleClickFavo = () => {
-    navigate("favorites");
+    navigate("");
   };
+
+  const fetchFavorites = async () => {
+    try {
+      const response = await callAPIJSON('/favorites', 'GET');
+      setFavorites(response);
+    } catch (error) {
+      console.error('Error fetching favorites:', error);
+    }
+  };
+
 
   const fetchData = async () => {
     const response = await callAPI("/categories.php", "GET");
@@ -24,37 +37,54 @@ const Favorite = () => {
     });
     modifiedData.splice(6);
     setCategory(modifiedData);
-    console.log(modifiedData);
   };
 
-  
   useEffect(() => {
     fetchData();
+  },[activeCategory])
+
+  useEffect(() => {
+    fetchFavorites();
   }, []);
 
+  const handleActive = (value) => {
+    setActiveCategory(value);
+    navigate("/");
+  }
+
+  const handleClickHome = () => {
+    navigate("/");
+  };
 
   return (
     <div className={classes.container}>
+      <Logo onClick={handleClickHome}/>
       <div className={classes.topNavbar}>
         {category.length > 0 ? (
-          category.map((data) => (
-            <TopCategories key={data.id} text={data.name} />
+          category.map((data, index) => (
+            <div key={index} onClick={() => handleActive(data.name)} className={activeCategory === data.name ? classes.active : ''}>
+              <TopCategories text={data.name} />
+            </div>
           ))
         ) : (
-          <p>No data available.</p>
+          <p>Loading...</p>
         )}
-        <p onClick={handleClickFavo}>Favorite</p>
+        <p onClick={() => handleActive("favorite")} className={activeCategory === "favorite" ? classes.active : ''}>Favorite</p>
       </div>
       <div className={classes.content}>
         <div className={classes.contentGrid}>
-          <MiniBox />
-          <MiniBox />
-          <MiniBox />
-          <MiniBox />
-          <MiniBox />
-          <MiniBox />
-          <MiniBox />
-          <MiniBox />
+          {favorites.length > 0 ? (
+            favorites.map((data) => (
+              <MiniBox
+                key={data.idMeal}
+                logo={data.gambar}
+                title={data.name}
+              // Tambahkan onClick jika ingin menavigasikan ke halaman detail favorit
+              />
+            ))
+          ) : (
+            <p>No favorites yet.</p>
+          )}
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import classes from "./style.module.scss";
 import logo from "../../assets/icons/olive.svg";
-const Ingredients = () => {
+const Ingredients = ({title, desc}) => {
   return (
     <div className={classes.container}>
       <div className={classes.kotak}>
@@ -9,8 +9,8 @@ const Ingredients = () => {
         </div>
       </div>
       <div className={classes.konten}>
-        <div className={classes.title}>Fennel</div>
-        <div className={classes.desc}>2 medium</div>
+        <div className={classes.title}>{title}</div>
+        <div className={classes.desc}>{desc}</div>
       </div>
     </div>
   );
