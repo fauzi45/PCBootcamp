@@ -1,0 +1,53 @@
+@import "../../styles/base.scss";
+
+.container {
+  width: 100%;
+  @include directionY;
+  .topNavbar {
+    @include directionX;
+    color: $fontTextPrimary;
+    font-family: "Roboto", sans-serif;
+    font-size: 17.525px;
+    font-weight: $FontWeight500;
+    cursor: pointer;
+    gap: 2rem;
+    padding-left: 4rem;
+  }
+  .textMore {
+    color: $fontTextPrimary;
+    font-size: 23.978px;
+    font-weight: $FontWeight700;
+    padding: 0 0 0 4rem;
+    font-family: "Archivo Narrow", sans-serif;
+  }
+  .content {
+    @include directionX;
+    overflow-x: scroll;
+    gap: 10rem;
+  }
+  .content::-webkit-scrollbar {
+    display: none;
+  }
+  .more {
+    display: grid;
+    padding-left: 4rem;
+    margin: 0;
+    @include apply-at-xs-size {
+      grid-template-columns: repeat(1, 1fr);
+      margin: auto;
+    }
+    @include apply-at-sm-size {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4rem;
+      margin: auto;
+    }
+    @include apply-at-lg-size {
+      grid-template-columns: repeat(4, 1fr);
+      margin: 0;
+    }
+    @include apply-at-xl-size {
+      grid-template-columns: repeat(6, 1fr);
+      margin: 0;
+    }
+  }
+}

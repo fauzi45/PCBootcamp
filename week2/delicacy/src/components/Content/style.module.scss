@@ -1,0 +1,125 @@
+@import "../../styles/base.scss";
+
+.BoxContainer {
+  width: 895px;
+  margin: 1rem 0;
+}
+.container {
+  width: 625px;
+  height: auto;
+  margin-left: 4rem;
+  background-color: white;
+  border-radius: 19.423px;
+  box-shadow: 0px 2.158px 5.395px 0px rgba(0, 0, 0, 0.15);
+  @include directionY;
+  @include apply-at-xs-size {
+    width: 420px;
+  }
+  @include apply-at-sm-size {
+    width: 505px;
+  }
+  @include apply-at-lg-size {
+    width: 625px;
+  }
+  @include apply-at-xl-size {
+    width: 625px;
+  }
+  .containerContent {
+    width: 606px;
+    border-radius: 19.423px;
+    background: $backgroundPrimary;
+    margin: 6px 8px;
+    padding-bottom: 3rem;
+    position: relative;
+    @include apply-at-xs-size {
+      width: 400px;
+    }
+    @include apply-at-sm-size {
+      width: 490px;
+    }
+    @include apply-at-lg-size {
+      width: 606px;
+    }
+    @include apply-at-xl-size {
+      width: 606px;
+    }
+    .title {
+      color: $fontTextPrimary;
+      margin-left: 11px;
+      font-family: "Archivo Narrow", sans-serif;
+      font-size: 20px;
+      font-weight: $FontWeight700;
+    }
+    .gambarContent {
+      @include apply-at-xs-size {
+        width: 200px;
+        height: 200px;
+        right: -70px;
+        position: relative;
+      }
+      @include apply-at-sm-size {
+        width: 300px;
+        height: 300px;
+        display: flex;
+        right: -110px;
+        margin: 2rem 0;
+        position: relative;
+      }
+      @include apply-at-lg-size {
+        width: 370px;
+        height: 370px;
+        position: absolute;
+        margin: 0;
+        right: -210px;
+      }
+      @include apply-at-xl-size {
+        width: 370px;
+        height: 370px;
+        position: absolute;
+        right: -210px;
+        margin: 0;
+      }
+    }
+    .desc {
+      width: 371px;
+      height: 144px;
+      overflow: scroll;
+      margin-left: 11px;
+    }
+
+    .desc::-webkit-scrollbar {
+      display: none;
+    }
+    .ing {
+      color: $fontTextSecondary;
+      font-family: "Archivo Narrow", sans-serif;
+      font-size: 19.423px;
+      margin-left: 9px;
+      font-weight: $FontWeight700;
+    }
+    .containerIng {
+      margin-left: 7px;
+      display: grid;
+      width: 300px;
+      @include apply-at-xs-size {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @include apply-at-sm-size {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @include apply-at-lg-size {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @include apply-at-xl-size {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .boxButton {
+      width: 300px;
+      @include directionX;
+      justify-content: space-between;
+      margin-left: 11px;
+    }
+  }
+}

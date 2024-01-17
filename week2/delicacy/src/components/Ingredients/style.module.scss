@@ -1,0 +1,49 @@
+@import "../../styles/base.scss";
+
+.container {
+  @include directionX;
+  gap: 6px;
+  .kotak {
+    width: 49.393px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 39.566px;
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    .kotakIn {
+      width: 90%;
+      border-radius: 5px;
+      height: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $backgroundPrimary;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+    }
+  }
+  .konten {
+    @include directionY;
+    height: 50px;
+    justify-content: center;
+    .title {
+      color: $fontTextPrimary;
+      font-family: "Roboto", sans-serif;
+      font-size: 10.551px;
+      font-weight: $FontWeight500;
+    }
+    .desc {
+      color: $fontTextSecondary;
+      font-family: "Roboto", sans-serif;
+      font-size: 8.124px;
+      font-weight: $FontWeight500;
+    }
+  }
+}

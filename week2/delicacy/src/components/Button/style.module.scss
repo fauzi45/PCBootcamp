@@ -1,0 +1,30 @@
+@import "../../styles/base.scss";
+
+.button {
+  width: 124.856px;
+  height: 29.63px;
+  border-radius: 5px;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  border: $fontTextButton solid 1px;
+  background: $backgroundPrimary;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  p {
+    color: $fontTextButton;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 7.99px;
+    font-weight: $FontWeight500;
+  }
+}
+.button:hover {
+  background-color: $fontTextButton;
+  p {
+    color: $backgroundPrimary;
+  }
+}

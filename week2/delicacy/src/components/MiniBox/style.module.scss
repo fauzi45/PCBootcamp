@@ -1,0 +1,30 @@
+@import "../../styles/base.scss";
+
+.container {
+  width: 142px;
+  height: 165px;
+  @include directionY;
+  justify-content: center;
+  align-items: center;
+  .img {
+    width: 96px;
+    height: 94px;
+    position: absolute;
+    margin-bottom: 6rem;
+  }
+  .content {
+    height: 130px;
+    width: 100%;
+    @include directionY;
+    justify-content: end;
+    align-items: center;
+    background: url("../../assets/icons/rectangles.svg");
+    bottom: 0;
+    p {
+      color: $fontTextBlack;
+      font-family: "Roboto", sans-serif;
+      font-size: 15px;
+      font-weight: $FontWeight500;
+    }
+  }
+}

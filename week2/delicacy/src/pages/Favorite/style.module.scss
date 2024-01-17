@@ -1,0 +1,43 @@
+@import "../../styles/base.scss";
+
+.container {
+  width: 100%;
+  @include directionY;
+  .topNavbar {
+    @include directionX;
+    color: $fontTextPrimary;
+    font-family: "Roboto", sans-serif;
+    font-size: 17.525px;
+    font-weight: $FontWeight500;
+    cursor: pointer;
+    gap: 2rem;
+    padding-left: 4rem;
+  }
+  .content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    .contentGrid {
+      display: grid;
+      margin: 0;
+      @include apply-at-xs-size {
+        grid-template-columns: repeat(1, 1fr);
+        margin: auto;
+      }
+      @include apply-at-sm-size {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4rem;
+        margin: auto;
+      }
+      @include apply-at-lg-size {
+        grid-template-columns: repeat(4, 1fr);
+        margin: 0;
+      }
+      @include apply-at-xl-size {
+        grid-template-columns: repeat(4, 1fr);
+        margin: 0;
+      }
+    }
+  }
+}
