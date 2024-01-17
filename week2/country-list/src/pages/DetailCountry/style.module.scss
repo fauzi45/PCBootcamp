@@ -102,7 +102,7 @@
       width: 50%;
     }
     margin: auto;
-   
+
     .title {
       font-size: 32px;
       font-weight: $FontWeights800;
@@ -116,10 +116,22 @@
       .descKiri {
         gap: 1rem;
         @include directionY;
+        span {
+          color: rgba(0, 0, 0, 0.5);
+          font-size: 16px;
+          font-weight: 400;
+          text-transform: capitalize;
+        }
       }
       .descKanan {
         gap: 1rem;
         @include directionY;
+        span {
+          color: rgba(0, 0, 0, 0.5);
+          font-size: 16px;
+          font-weight: 400;
+          text-transform: capitalize;
+        }
       }
     }
     .borders {
