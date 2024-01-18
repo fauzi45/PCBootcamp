@@ -5,11 +5,11 @@ import Button from "../Button";
 import Ingredients from "../Ingredients";
 import classes from "./style.module.scss";
 import { callAPIJSON } from "../../domain/api";
-const Content = ({ addFav, onClick, removeFav, data }) => {
+const Content = ({ addFav, onClick, removeFav, data,favoritesChanged  }) => {
   const location = useLocation();
   const [favorite, setFavorite] = useState([]);
-  
-  const isInFavorites = favorite.some((fav) => fav.id === data?.idMeal);
+  const [isInFavorites, setIsInFavorites] = useState(false);
+
 
   const {
     strMeal,
@@ -24,7 +24,7 @@ const Content = ({ addFav, onClick, removeFav, data }) => {
     strMeasure3,
     strMeasure4,
   } = data;
-  
+
   const handleRemoveFromFavorites = () => {
     if (isInFavorites) {
       removeFav(); // Call the removeFav function passed as a prop
@@ -40,6 +40,10 @@ const Content = ({ addFav, onClick, removeFav, data }) => {
           id: item?.id,
         };
       });
+      const isInFavoritesNow = modifiedData.some(
+        (fav) => fav.id === data?.idMeal
+      );
+      setIsInFavorites(isInFavoritesNow);
       setFavorite(modifiedData);
     } catch (error) {
       console.error("Error fetching favorites:", error);
@@ -48,7 +52,7 @@ const Content = ({ addFav, onClick, removeFav, data }) => {
 
   useEffect(() => {
     fetchFavorites();
-  }, [favorite]);
+  }, [favoritesChanged, data]);
 
   return (
     <div className={classes.BoxContainer}>

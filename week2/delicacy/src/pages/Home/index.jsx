@@ -16,20 +16,8 @@ const Home = () => {
   const [activeCategory, setActiveCategory] = useState("Beef");
   const navigate = useNavigate();
   const [favorite, setFavorite] = useState([]);
+  const [favoritesChanged, setFavoritesChanged] = useState(false);
 
-  const fetchFavorites = async () => {
-    try {
-      const response = await callAPIJSON("/favorites", "GET");
-      const modifiedData = response.map((item) => {
-        return {
-          id: item?.id,
-        };
-      });
-      setFavorite(modifiedData);
-    } catch (error) {
-      console.error("Error fetching favorites:", error);
-    }
-  };
 
   const handleAddToFavorites = async (data) => {
     try {
@@ -40,6 +28,7 @@ const Home = () => {
       };
       await addToFavorites(favoriteData);
       alert("Added to Favorites!");
+      setFavoritesChanged((prev) => !prev); 
     } catch (error) {
       console.error("Error adding to favorites:", error);
       alert("Failed to add to Favorites!");
@@ -79,9 +68,6 @@ const Home = () => {
     fetchDataRandom();
   }, []);
 
-  useEffect(() => {
-    fetchFavorites();
-  }, [favorite]);
 
   const fetchDataRandom = async () => {
     try {
@@ -150,6 +136,7 @@ const Home = () => {
       const response = await callAPIJSON(`/favorites/${id}`, "delete");
       setFavorite(response);
       alert("Data berhasil didelete");
+      setFavoritesChanged((prev) => !prev); 
     } catch (error) {
       console.error("Error fetching favorites:", error);
     }
@@ -188,6 +175,7 @@ const Home = () => {
               onClick={() => handleClickDetail(data)}
               addFav={() => handleAddToFavorites(data)}
               removeFav={() => handleDelete(data.idMeal)}
+              favoritesChanged={favoritesChanged} 
             />
           ))
         ) : (

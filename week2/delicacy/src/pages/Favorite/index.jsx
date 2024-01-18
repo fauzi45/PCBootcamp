@@ -13,6 +13,7 @@ const Favorite = () => {
   const [favorites, setFavorites] = useState([]);
   const [activeCategory, setActiveCategory] = useState("favorite");
   const navigate = useNavigate();
+  const [favoritesChanged, setFavoritesChanged] = useState(false);
 
   const fetchFavorites = async () => {
     try {
@@ -40,7 +41,7 @@ const Favorite = () => {
 
   useEffect(() => {
     fetchFavorites();
-  }, [favorites]);
+  }, [favoritesChanged]);
 
   const handleActive = (value) => {
     setActiveCategory(value);
@@ -55,6 +56,7 @@ const Favorite = () => {
     try {
       const response = await callAPIJSON(`/favorites/${id}`, "delete");
       setFavorites(response);
+      setFavoritesChanged((prev) => !prev);
     } catch (error) {
       console.error("Error fetching favorites:", error);
     }

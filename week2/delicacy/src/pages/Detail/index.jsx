@@ -14,6 +14,7 @@ const Detail = () => {
   const data = location.state;
   const navigate = useNavigate();
   const [favorite, setFavorite] = useState([]);
+  const [favoritesChanged, setFavoritesChanged] = useState(false);
 
   const fetchFavorites = async () => {
     try {
@@ -37,6 +38,7 @@ const Detail = () => {
       };
       await addToFavorites(favoriteData);
       alert("Added to Favorites!");
+      setFavoritesChanged((prev) => !prev); 
     } catch (error) {
       console.error("Error adding to favorites:", error);
       alert("Failed to add to Favorites!");
@@ -57,13 +59,14 @@ const Detail = () => {
 
   useEffect(() => {
     fetchFavorites();
-  }, [favorite]);
+  }, []);
 
   const handleDelete = async (id) => {
     try {
       const response = await callAPIJSON(`/favorites/${id}`, "delete");
       setFavorite(response);
       alert("Data berhasil didelete");
+      setFavoritesChanged((prev) => !prev); 
     } catch (error) {
       console.error("Error fetching favorites:", error);
     }
@@ -90,6 +93,7 @@ const Detail = () => {
           onClick={() => handleClickDetail(data)}
           addFav={() => handleAddToFavorites(data)}
           removeFav={() => handleDelete(data.idMeal)}
+          favoritesChanged={favoritesChanged} 
         />
       </div>
       <p className={classes.textMore}>More recipies</p>
