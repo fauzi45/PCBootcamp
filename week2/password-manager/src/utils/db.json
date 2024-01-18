@@ -8,18 +8,25 @@
       "category": "work"
     },
     {
-      "id": "2",
-      "provider": "telkomsel.com",
-      "email": "mail@telkomsel.com",
+      "id": "3",
+      "provider": "phincon.com",
+      "email": "mail@phincon.com",
       "password": "Bethebest123",
-      "category": "family"
+      "category": "work"
     },
     {
-      "id": "3",
-      "provider": "xl.com",
-      "email": "mail@xl.com",
+      "id": "4",
+      "provider": "phincon.com",
+      "email": "mail@phincon.com",
       "password": "Bethebest123",
-      "category": "personal"
+      "category": "work"
+    },
+    {
+      "id": "5",
+      "provider": "phincon.com",
+      "email": "mail@phincon.com",
+      "password": "Bethebest123",
+      "category": "work"
     }
   ]
 }
