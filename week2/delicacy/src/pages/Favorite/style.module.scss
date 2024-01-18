@@ -2,9 +2,11 @@
 
 .container {
   width: 100%;
+  height: 100vh;
   @include directionY;
   .topNavbar {
     @include directionX;
+    overflow-x: scroll;
     color: $fontTextSecondary;
     font-family: "Roboto", sans-serif;
     font-size: 17.525px;

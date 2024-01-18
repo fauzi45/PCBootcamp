@@ -1,22 +1,9 @@
 {
   "favorites": [
     {
-      "id": "ca43",
-      "idMeal": "52874",
-      "name": "Beef and Mustard Pie",
-      "gambar": "https://www.themealdb.com/images/media/meals/sytuqu1511553755.jpg"
-    },
-    {
-      "id": "9a57",
-      "idMeal": "52874",
-      "name": "Beef and Mustard Pie",
-      "gambar": "https://www.themealdb.com/images/media/meals/sytuqu1511553755.jpg"
-    },
-    {
-      "id": "a785",
-      "idMeal": "52904",
-      "name": "Beef Bourguignon",
-      "gambar": "https://www.themealdb.com/images/media/meals/vtqxtu1511784197.jpg"
+      "id": "53049",
+      "name": "Apam balik",
+      "gambar": "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg"
     }
   ]
 }

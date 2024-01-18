@@ -1,30 +1,88 @@
 import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import Button from "../Button";
 import Ingredients from "../Ingredients";
 import classes from "./style.module.scss";
-const Content = ({ onClick, addFav, title, gambar, desc, ing1, desc1, ing2, desc2, ing3, desc3, ing4, desc4 }) => {
+import { callAPIJSON } from "../../domain/api";
+const Content = ({ addFav, onClick, removeFav, data,favoritesChanged  }) => {
   const location = useLocation();
+  const [favorite, setFavorite] = useState([]);
+  const [isInFavorites, setIsInFavorites] = useState(false);
+
+
+  const {
+    strMeal,
+    strMealThumb,
+    strInstructions,
+    strIngredient1,
+    strIngredient2,
+    strIngredient3,
+    strIngredient4,
+    strMeasure1,
+    strMeasure2,
+    strMeasure3,
+    strMeasure4,
+  } = data;
+
+  const handleRemoveFromFavorites = () => {
+    if (isInFavorites) {
+      removeFav(); // Call the removeFav function passed as a prop
+    }
+  };
+
+  const fetchFavorites = async () => {
+    try {
+      const response = await callAPIJSON("/favorites", "GET");
+
+      const modifiedData = response?.map((item) => {
+        return {
+          id: item?.id,
+        };
+      });
+      const isInFavoritesNow = modifiedData.some(
+        (fav) => fav.id === data?.idMeal
+      );
+      setIsInFavorites(isInFavoritesNow);
+      setFavorite(modifiedData);
+    } catch (error) {
+      console.error("Error fetching favorites:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchFavorites();
+  }, [favoritesChanged, data]);
 
   return (
     <div className={classes.BoxContainer}>
       <div className={classes.container}>
         <div className={classes.containerContent}>
-          <p className={classes.title}>{title}</p>
-          <img className={classes.gambarContent} src={gambar} />
-          <div className={classes.desc}>
-            {desc}
-          </div>
+          <p className={classes.title}>{strMeal}</p>
+          <img className={classes.gambarContent} src={strMealThumb} />
+          <div className={classes.desc}>{strInstructions}</div>
           <p className={classes.ing}>Ingredients</p>
           <div className={classes.containerIng}>
-            <Ingredients title={ing1} desc={desc1} />
-            <Ingredients title={ing2} desc={desc2} />
-            <Ingredients title={ing3} desc={desc3} />
-            <Ingredients title={ing4} desc={desc4} />
+            <Ingredients title={strIngredient1} desc={strMeasure1} />
+            <Ingredients title={strIngredient2} desc={strMeasure2} />
+            <Ingredients title={strIngredient3} desc={strMeasure3} />
+            <Ingredients title={strIngredient4} desc={strMeasure4} />
           </div>
           <div className={classes.boxButton}>
-            {location.pathname === "/detail/" ? "" : (<Button onClick={onClick} text={"Detail"} />)}
-            <Button onClick={addFav} text={"Add to favorites"} />
+            {location.pathname === "/detail/" ? (
+              ""
+            ) : (
+              <Button onClick={onClick} text={"Detail"} />
+            )}
+
+            {isInFavorites ? (
+              <Button
+                onClick={handleRemoveFromFavorites}
+                text={"Remove from Favorites"}
+              ></Button>
+            ) : (
+              <Button onClick={addFav} text={"Add to Favorites"}></Button>
+            )}
           </div>
         </div>
       </div>
