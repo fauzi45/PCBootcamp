@@ -1,0 +1,25 @@
+{
+  "password": [
+    {
+      "id": "1",
+      "provider": "phincon.com",
+      "email": "mail@phincon.com",
+      "password": "Bethebest123",
+      "category": "work"
+    },
+    {
+      "id": "2",
+      "provider": "telkomsel.com",
+      "email": "mail@telkomsel.com",
+      "password": "Bethebest123",
+      "category": "family"
+    },
+    {
+      "id": "3",
+      "provider": "xl.com",
+      "email": "mail@xl.com",
+      "password": "Bethebest123",
+      "category": "personal"
+    }
+  ]
+}
