@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import { callAPI } from "../../domain/api";
+import { callAPI, addToFavorites } from "../../domain/api";
 
 import Content from "../../components/Content";
 import MiniBox from "../../components/MiniBox";
@@ -14,9 +14,23 @@ const Detail = () => {
   const data = location.state;
   const navigate = useNavigate();
 
+  const handleAddToFavorites = async (data) => {
+    try {
+      const favoriteData = {
+        id: data.idMeal,
+        name: data.strMeal,
+        gambar: data.strMealThumb,
+      };
+      await addToFavorites(favoriteData);
+      alert("Added to Favorites!");
+    } catch (error) {
+      console.error("Error adding to favorites:", error);
+      alert("Failed to add to Favorites!");
+    }
+  };
+
   const handleClickDetail = (value) => {
-    navigate(``, { state: value, hasDetailButton: true },
-    );
+    navigate(``, { state: value, hasDetailButton: true });
   };
 
   const handleClickHome = () => {
@@ -33,15 +47,15 @@ const Detail = () => {
         callAPI("/random.php", "GET")
       );
       const responses = await Promise.all(apiPromises);
-      const newData = responses.map(response => response.meals[0]);
+      const newData = responses.map((response) => response.meals[0]);
       setDataRandom(newData);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
   return (
     <div className={classes.container}>
-      <Logo onClick={handleClickHome}/>
+      <Logo onClick={handleClickHome} />
       <div className={classes.containerContent}>
         <Content
           title={data.strMeal}
@@ -55,13 +69,20 @@ const Detail = () => {
           desc3={data.strMeasure3}
           ing4={data.strIngredient4}
           desc4={data.strMeasure4}
-          onClick={() => handleClickDetail(data)} />
+          onClick={() => handleClickDetail(data)}
+          addFav={() => handleAddToFavorites(data)}
+        />
       </div>
       <p className={classes.textMore}>More recipies</p>
       <div className={classes.more}>
         {datarandom.length > 0 ? (
-          datarandom.map(data => (
-            <MiniBox key={data.idMeal} logo={data.strMealThumb} title={data.strMeal} onClick={() => handleClickDetail(data)} />
+          datarandom.map((data) => (
+            <MiniBox
+              key={data.idMeal}
+              logo={data.strMealThumb}
+              title={data.strMeal}
+              onClick={() => handleClickDetail(data)}
+            />
           ))
         ) : (
           <p>Loading...</p>

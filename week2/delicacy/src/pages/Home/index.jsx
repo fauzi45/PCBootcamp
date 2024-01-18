@@ -15,26 +15,39 @@ const Home = () => {
   const [datarandom, setDataRandom] = useState([]);
   const [activeCategory, setActiveCategory] = useState("Beef");
   const navigate = useNavigate();
+  const [favorite, setFavorite] = useState([]);
+
+  const fetchFavorites = async () => {
+    try {
+      const response = await callAPIJSON("/favorites", "GET");
+      const modifiedData = response.map((item) => {
+        return {
+          id: item?.id,
+        };
+      });
+      setFavorite(modifiedData);
+    } catch (error) {
+      console.error("Error fetching favorites:", error);
+    }
+  };
 
   const handleAddToFavorites = async (data) => {
     try {
       const favoriteData = {
-        idMeal: data.idMeal,
+        id: data.idMeal,
         name: data.strMeal,
         gambar: data.strMealThumb,
       };
       await addToFavorites(favoriteData);
-      alert('Added to Favorites!');
+      alert("Added to Favorites!");
     } catch (error) {
-      console.error('Error adding to favorites:', error);
-      alert('Failed to add to Favorites!');
+      console.error("Error adding to favorites:", error);
+      alert("Failed to add to Favorites!");
     }
   };
 
-
   const handleClickDetail = (value) => {
-    navigate(`detail/`, { state: value, hasDetailButton: true },
-    );
+    navigate(`detail/`, { state: value, hasDetailButton: true });
   };
 
   const handleClickFavo = (value) => {
@@ -64,6 +77,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchDataRandom();
+    fetchFavorites();
   }, []);
 
   const fetchDataRandom = async () => {
@@ -72,15 +86,18 @@ const Home = () => {
         callAPI("/random.php", "GET")
       );
       const responses = await Promise.all(apiPromises);
-      const newData = responses.map(response => response.meals[0]);
+      const newData = responses.map((response) => response.meals[0]);
       setDataRandom(newData);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
 
   const fetchData = async () => {
-    const responseByCategories = await callAPI(`/filter.php?c=${activeCategory}`, "GET");
+    const responseByCategories = await callAPI(
+      `/filter.php?c=${activeCategory}`,
+      "GET"
+    );
     const slicedResponse = responseByCategories?.meals?.slice(0, 5);
 
     const modifiedResponse = slicedResponse?.map(async (item) => {
@@ -88,13 +105,20 @@ const Home = () => {
         `/search.php?s=${item.strMeal}`,
         "GET"
       );
-      const { idMeal, strIngredient1, strInstructions, strMeasure1, strIngredient2,
+      const {
+        idMeal,
+        strIngredient1,
+        strInstructions,
+        strMeasure1,
+        strIngredient2,
         strMeasure2,
         strIngredient3,
         strMeasure3,
         strIngredient4,
-        strMeasure4, strMealThumb, strMeal } =
-        responseByName.meals[0];
+        strMeasure4,
+        strMealThumb,
+        strMeal,
+      } = responseByName.meals[0];
       return {
         idMeal,
         strInstructions,
@@ -116,7 +140,16 @@ const Home = () => {
 
   const handleActive = (value) => {
     setActiveCategory(value);
-  }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await callAPIJSON(`/favorites/${id}`, "delete");
+      setFavorite(response);
+    } catch (error) {
+      console.error("Error fetching favorites:", error);
+    }
+  };
 
   return (
     <div className={classes.container}>
@@ -124,14 +157,23 @@ const Home = () => {
       <div className={classes.topNavbar}>
         {category.length > 0 ? (
           category.map((data, index) => (
-            <div key={index} onClick={() => handleActive(data.name)} className={activeCategory === data.name ? classes.active : ''}>
+            <div
+              key={index}
+              onClick={() => handleActive(data.name)}
+              className={activeCategory === data.name ? classes.active : ""}
+            >
               <TopCategories text={data.name} />
             </div>
           ))
         ) : (
           <p>Loading...</p>
         )}
-        <p onClick={() => handleClickFavo("favorite")} className={activeCategory === "favorite" ? classes.active : ''}>Favorite</p>
+        <p
+          onClick={() => handleClickFavo("favorite")}
+          className={activeCategory === "favorite" ? classes.active : ""}
+        >
+          Favorite
+        </p>
       </div>
       <div className={classes.content}>
         {data.length > 0 ? (
@@ -150,18 +192,24 @@ const Home = () => {
               ing4={data.strIngredient4}
               desc4={data.strMeasure4}
               onClick={() => handleClickDetail(data)}
-              addFav={() => handleAddToFavorites(data)} />
+              addFav={() => handleAddToFavorites(data)}
+              removeFav={() => handleDelete(data.id)}
+            />
           ))
         ) : (
           <div className={classes.containerLoading}>Loading...</div>
         )}
-
       </div>
       <p className={classes.textMore}>More recipies</p>
       <div className={classes.more}>
         {datarandom.length > 0 ? (
-          datarandom.map(data => (
-            <MiniBox key={data.idMeal} logo={data.strMealThumb} title={data.strMeal} onClick={() => handleClickDetail(data)} />
+          datarandom.map((data) => (
+            <MiniBox
+              key={data.idMeal}
+              logo={data.strMealThumb}
+              title={data.strMeal}
+              onClick={() => handleClickDetail(data)}
+            />
           ))
         ) : (
           <p>Loading...</p>

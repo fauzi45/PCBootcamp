@@ -25,15 +25,6 @@ export const addToFavorites = async (data) => {
   }
 };
 
-export const getFavorites = async () => {
-  try {
-    const response = await callAPI('/favorites', 'GET');
-    return response;
-  } catch (error) {
-    throw error;
-  }
-};
-
 
 export const callAPI = async (
   endpoint,
