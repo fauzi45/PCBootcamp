@@ -1,19 +1,24 @@
 {
   "favorites": [
     {
-      "id": "52874",
-      "name": "Beef and Mustard Pie",
-      "gambar": "https://www.themealdb.com/images/media/meals/sytuqu1511553755.jpg"
-    },
-    {
       "id": "53049",
       "name": "Apam balik",
       "gambar": "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg"
     },
     {
+      "id": "53018",
+      "name": "Bigos (Hunters Stew)",
+      "gambar": "https://www.themealdb.com/images/media/meals/md8w601593348504.jpg"
+    },
+    {
       "id": "52874",
       "name": "Beef and Mustard Pie",
       "gambar": "https://www.themealdb.com/images/media/meals/sytuqu1511553755.jpg"
+    },
+    {
+      "id": "52904",
+      "name": "Beef Bourguignon",
+      "gambar": "https://www.themealdb.com/images/media/meals/vtqxtu1511784197.jpg"
     }
   ]
 }

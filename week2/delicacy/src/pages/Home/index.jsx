@@ -77,8 +77,11 @@ const Home = () => {
 
   useEffect(() => {
     fetchDataRandom();
-    fetchFavorites();
   }, []);
+
+  useEffect(() => {
+    fetchFavorites();
+  }, [favorite]);
 
   const fetchDataRandom = async () => {
     try {
@@ -146,6 +149,7 @@ const Home = () => {
     try {
       const response = await callAPIJSON(`/favorites/${id}`, "delete");
       setFavorite(response);
+      alert("Data berhasil didelete");
     } catch (error) {
       console.error("Error fetching favorites:", error);
     }
@@ -180,20 +184,10 @@ const Home = () => {
           data.map((data, index) => (
             <Content
               key={index}
-              title={data.strMeal}
-              desc={data.strInstructions}
-              gambar={data.strMealThumb}
-              ing1={data.strIngredient1}
-              desc1={data.strMeasure1}
-              ing2={data.strIngredient2}
-              desc2={data.strMeasure2}
-              ing3={data.strIngredient3}
-              desc3={data.strMeasure3}
-              ing4={data.strIngredient4}
-              desc4={data.strMeasure4}
+              data={data}
               onClick={() => handleClickDetail(data)}
               addFav={() => handleAddToFavorites(data)}
-              removeFav={() => handleDelete(data.id)}
+              removeFav={() => handleDelete(data.idMeal)}
             />
           ))
         ) : (

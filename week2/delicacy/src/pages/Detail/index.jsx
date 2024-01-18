@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import { callAPI, addToFavorites } from "../../domain/api";
+import { callAPI, addToFavorites, callAPIJSON } from "../../domain/api";
 
 import Content from "../../components/Content";
 import MiniBox from "../../components/MiniBox";
@@ -13,7 +13,21 @@ const Detail = () => {
   const [datarandom, setDataRandom] = useState([]);
   const data = location.state;
   const navigate = useNavigate();
+  const [favorite, setFavorite] = useState([]);
 
+  const fetchFavorites = async () => {
+    try {
+      const response = await callAPIJSON("/favorites", "GET");
+      const modifiedData = response.map((item) => {
+        return {
+          id: item?.id,
+        };
+      });
+      setFavorite(modifiedData);
+    } catch (error) {
+      console.error("Error fetching favorites:", error);
+    }
+  };
   const handleAddToFavorites = async (data) => {
     try {
       const favoriteData = {
@@ -41,6 +55,20 @@ const Detail = () => {
     fetchDataRandom();
   }, []);
 
+  useEffect(() => {
+    fetchFavorites();
+  }, [favorite]);
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await callAPIJSON(`/favorites/${id}`, "delete");
+      setFavorite(response);
+      alert("Data berhasil didelete");
+    } catch (error) {
+      console.error("Error fetching favorites:", error);
+    }
+  };
+
   const fetchDataRandom = async () => {
     try {
       const apiPromises = Array.from({ length: 6 }, (_, index) =>
@@ -58,19 +86,10 @@ const Detail = () => {
       <Logo onClick={handleClickHome} />
       <div className={classes.containerContent}>
         <Content
-          title={data.strMeal}
-          desc={data.strInstructions}
-          gambar={data.strMealThumb}
-          ing1={data.strIngredient1}
-          desc1={data.strMeasure1}
-          ing2={data.strIngredient2}
-          desc2={data.strMeasure2}
-          ing3={data.strIngredient3}
-          desc3={data.strMeasure3}
-          ing4={data.strIngredient4}
-          desc4={data.strMeasure4}
+          data={data}
           onClick={() => handleClickDetail(data)}
           addFav={() => handleAddToFavorites(data)}
+          removeFav={() => handleDelete(data.idMeal)}
         />
       </div>
       <p className={classes.textMore}>More recipies</p>
@@ -82,6 +101,7 @@ const Detail = () => {
               logo={data.strMealThumb}
               title={data.strMeal}
               onClick={() => handleClickDetail(data)}
+              removeFav={() => handleDelete(data.idMeal)}
             />
           ))
         ) : (
