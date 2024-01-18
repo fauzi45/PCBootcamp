@@ -1,6 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
 
-import Navbar from "../../components/Navbar";
 import classes from "./style.module.scss";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
