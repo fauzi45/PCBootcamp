@@ -1,12 +1,6 @@
 @import "../../styles/base.scss";
 
-* {
-  margin: 0;
-  padding: 0;
-}
-.container {
-  @include directionY;
-  .navbar{
+.navbar{
     @include directionX;
     gap: 2rem;
     .link{
@@ -14,4 +8,3 @@
       color: black;
     }
   }
-}

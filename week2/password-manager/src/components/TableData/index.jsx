@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -14,12 +14,11 @@ import Paper from "@mui/material/Paper";
 import ButtonKotak from "../Button";
 import { callAPIJSON } from "../../domain/api";
 
-
-const TableData = ({ datas, fetchData  }) => {
+const TableData = ({ datas, fetchData }) => {
   const navigate = useNavigate();
   const handleDetail = (value) => {
     navigate(`/detail/${value}`);
-  }
+  };
 
   const handleIsDelete = async (value) => {
     Swal.fire({
@@ -29,13 +28,13 @@ const TableData = ({ datas, fetchData  }) => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         handleDelete(value);
       }
     });
-  }
+  };
 
   const handleDelete = async (value) => {
     try {
@@ -43,13 +42,13 @@ const TableData = ({ datas, fetchData  }) => {
       Swal.fire({
         title: "Deleted!",
         text: "Your file has been deleted.",
-        icon: "success"
+        icon: "success",
       });
       fetchData();
     } catch (error) {
       console.error("Error fetching favorites:", error);
     }
-  }
+  };
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
@@ -59,26 +58,43 @@ const TableData = ({ datas, fetchData  }) => {
             <TableCell>Provider</TableCell>
             <TableCell>Email</TableCell>
             <TableCell>Category</TableCell>
-            <TableCell sx={{ textAlign: "center" }} colSpan={3}>Action</TableCell>
+            <TableCell sx={{ textAlign: "center" }} colSpan={3}>
+              Action
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {datas.map((data, index) => {
-            return (
-              <TableRow key={data.id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                <TableCell>{index+1}</TableCell>
-                <TableCell>{data.provider}</TableCell>
-                <TableCell>{data.email}</TableCell>
-                <TableCell>{data.category}</TableCell>
-                <TableCell sx={{ textAlign: "end" }}><ButtonKotak onClick={() => handleDetail(data.id)} text={"Detail"} /></TableCell>
-                <TableCell onClick={() => handleIsDelete(data.id)} sx={{ textAlign: "start" }}>
-                  <DeleteIcon color="primary" />
-                </TableCell>
-              </TableRow>
-            )
-          }
+          {datas.length > 0 ? (
+            datas.map((data, index) => {
+              return (
+                <TableRow
+                  key={data.id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>{data.provider}</TableCell>
+                  <TableCell>{data.email}</TableCell>
+                  <TableCell>{data.category}</TableCell>
+                  <TableCell sx={{ textAlign: "end" }}>
+                    <ButtonKotak
+                      onClick={() => handleDetail(data.id)}
+                      text={"Detail"}
+                    />
+                  </TableCell>
+                  <TableCell
+                    onClick={() => handleIsDelete(data.id)}
+                    sx={{ textAlign: "start" }}
+                  >
+                    <DeleteIcon color="primary" />
+                  </TableCell>
+                </TableRow>
+              );
+            })
+          ) : (
+            <TableRow>
+              <TableCell colSpan={5} align="center">Data Tidak ada</TableCell>
+            </TableRow>
           )}
-
         </TableBody>
       </Table>
     </TableContainer>
