@@ -1,22 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {setUsernameDispatcher} from "../../pages/Home/action";
+import { setProfileDispatch } from "../../pages/Home/action";
 
-import Button from "../Button";
 import classes from "./style.module.scss";
 
 const InfoPersonal = () => {
-  const dispatch = useDispatch();
-  
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [pNumber, setPNumber] = useState("");
+  const personalInfoRedux = useSelector((state) => state.homeReducer.profile);
 
-  dispatch(setUsernameDispatcher({
-    name,
-    email
-  }))
+  const [personalInfo, setPersonalInfo] = useState({
+    name: personalInfoRedux.name,
+    email: personalInfoRedux.email,
+    phoneNumber: personalInfoRedux.phoneNumber,
+    plan: personalInfoRedux.plan,
+    planValue: personalInfoRedux.planValue,
+    categoryRedux: personalInfoRedux.categoryRedux,
+    addOns: personalInfoRedux.addOns,
+  });
+
+  const dispatch = useDispatch();
+
+  const handleProfileChange = (e) => {
+    setPersonalInfo({
+      ...personalInfo,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  useEffect(() => {
+    dispatch(setProfileDispatch(personalInfo));
+  }, [personalInfo]);
 
   return (
     <>
@@ -33,7 +46,8 @@ const InfoPersonal = () => {
               type="text"
               name="name"
               placeholder="e.g Stephen King"
-              onChange={(e) => setName(e.target.value)}
+              onChange={handleProfileChange}
+              value={personalInfo.name}
             ></input>
           </div>
           <div>
@@ -43,8 +57,9 @@ const InfoPersonal = () => {
               className="input"
               type="email"
               name="email"
-              onChange={(e) => setEmail(e.target.value)}
               placeholder="e.g stephenking@lorem.com"
+              onChange={handleProfileChange}
+              value={personalInfo.email}
             ></input>
           </div>
           <div>
@@ -52,9 +67,10 @@ const InfoPersonal = () => {
             <input
               required
               type="text"
-              name="firstname"
-              onChange={(e) => setPNumber(e.target.value)}
+              name="phoneNumber"
               placeholder="e.g. +1 234 567 890"
+              onChange={handleProfileChange}
+              value={personalInfo.phoneNumber}
             ></input>
           </div>
         </div>

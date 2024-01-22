@@ -1,8 +1,30 @@
 import { Link } from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
+import { setProfileDispatch } from "../../pages/Home/action";
+import { useState, useEffect } from "react";
+import { setStep } from "../../pages/Home/action";
 
 import classes from "./style.module.scss";
 
 const Summary = () => {
+  const dispatch = useDispatch();
+  const [total, setTotal] = useState(0);
+  const personalInfoRedux = useSelector((state) => state.homeReducer.profile);
+
+  const [personalInfo, setPersonalInfo] = useState({
+    name: personalInfoRedux.name,
+    email: personalInfoRedux.email,
+    phoneNumber: personalInfoRedux.phoneNumber,
+    plan: personalInfoRedux.plan,
+    planValue: personalInfoRedux.planValue,
+    categoryRedux: personalInfoRedux.categoryRedux,
+    addOns: personalInfoRedux.addOns || [],
+  });
+
+  useEffect(() => {
+    setTotal(personalInfo.planValue);
+  },[])
+
   return (
     <>
       <div className={classes.container}>
@@ -14,10 +36,10 @@ const Summary = () => {
           <div className={classes.wrapper}>
             <div className={classes.contentRow}>
               <div className={classes.topContentLeft}>
-                <p className={classes.contentTitle}>Arcade (Monthly)</p>
-                <Link className={classes.contentChange}>Change</Link>
+                <p className={classes.contentTitle}>{personalInfo.plan} ({personalInfo.categoryRedux})</p>
+                <Link onClick={() => dispatch(setStep(2))} className={classes.contentChange}>Change</Link>
               </div>
-              <p className={classes.cost}>$9/mo</p>
+              <p className={classes.cost}>${personalInfo.planValue}/mo</p>
             </div>
             <div className={classes.garis} />
             <div className={classes.contentRow}>
@@ -34,8 +56,8 @@ const Summary = () => {
             </div>
           </div>
           <div className={classes.TotalCost}>
-            <p className={classes.totalText}>Total (per month)</p>
-            <p className={classes.totalCostNumber}>+$12/mo</p>
+            <p className={classes.totalText}>Total (per {personalInfo.categoryRedux})</p>
+            <p className={classes.totalCostNumber}>+${total}/mo</p>
           </div>
         </div>
       </div>

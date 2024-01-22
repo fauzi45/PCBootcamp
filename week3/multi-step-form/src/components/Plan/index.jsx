@@ -1,3 +1,7 @@
+import { useDispatch, useSelector } from "react-redux";
+import { setProfileDispatch } from "../../pages/Home/action";
+import { useState, useEffect } from "react";
+
 import classes from "./style.module.scss";
 import arcade from "../../assets/images/icon-arcade.svg";
 import advanced from "../../assets/images/icon-advanced.svg";
@@ -51,44 +55,126 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const Plan = () => {
+  const personalInfoRedux = useSelector((state) => state.homeReducer.profile);
+
+  const [personalInfo, setPersonalInfo] = useState({
+    name: personalInfoRedux.name,
+    email: personalInfoRedux.email,
+    phoneNumber: personalInfoRedux.phoneNumber,
+    plan: personalInfoRedux.plan,
+    planValue: personalInfoRedux.planValue,
+    categoryRedux: personalInfoRedux.categoryRedux,
+    addOns: personalInfoRedux.addOns,
+  });
+  const [category, setCategory] = useState("monthly");
+
+  const dispatch = useDispatch();
+
+  function changeSelection(id) {
+    if (id === 0) {
+      setPersonalInfo({
+        ...personalInfoRedux,
+        plan: "Arcade",
+        planValue: category === "monthly" ? 9 : 90,
+        categoryRedux: category === "monthly" ? "monthly" : "yearly"
+      })
+    } else if (id === 1) {
+      setPersonalInfo({
+        ...personalInfoRedux,
+        plan: "Advanced",
+        planValue: category === "monthly" ? 12 : 120,
+        categoryRedux: category === "monthly" ? "monthly" : "yearly"
+      })
+    } else if (id === 2) {
+      setPersonalInfo({
+        ...personalInfoRedux,
+        plan: "Pro",
+        planValue: category === "monthly" ? 15 : 150,
+        categoryRedux: category === "monthly" ? "monthly" : "yearly"
+      })
+    }
+  }
+
+  function switchCategory(isYearly) {
+    if (category === "monthly") {
+      setPersonalInfo({
+        ...personalInfoRedux,
+        plan: ""
+      });
+      setCategory("yearly");
+    } else {
+      setPersonalInfo({
+        ...personalInfoRedux,
+        plan: ""
+      });
+      setCategory("monthly");
+    }
+  }
+
+  useEffect(() => {
+    dispatch(setProfileDispatch(personalInfo));
+  }, [personalInfo]);
+
   return (
     <>
       <div className={classes.container}>
+        {console.log(personalInfoRedux)}
+
         <h2 className={classes.title}>Select Your Plan</h2>
         <h5 className={classes.desc}>
           You have the option of monthly or yearly billing.
         </h5>
         <div className={classes.content}>
           <div className={classes.containercard}>
-            <div className={classes.card}>
+            <div className={classes.card + " " + (personalInfo.plan === "Arcade" ? classes.selected : "")} onClick={() => changeSelection(0)}>
               <img src={arcade} />
               <div className={classes.cardContent}>
                 <p className={classes.cardTitle}>Arcade</p>
-                <p className={classes.cardCost}>$9/mo</p>
+                {category === "monthly" ? <p className={classes.cardCost}>$9/mo</p> :
+                  (<div>
+                    <p className={classes.cardCost}>$90/yr</p>
+                    <p className={classes.cardFree}>2 months free</p>
+                  </div>
+                  )
+                }
               </div>
             </div>
-            <div className={classes.card}>
+            <div className={classes.card + " " + (personalInfo.plan === "Advanced" ? classes.selected : "")} onClick={() => changeSelection(1)}>
               <img src={advanced} />
               <div className={classes.cardContent}>
                 <p className={classes.cardTitle}>Advanced</p>
-                <p className={classes.cardCost}>$12/mo</p>
+                {category === "monthly" ? <p className={classes.cardCost}>$12/mo</p> :
+                  (<div>
+                    <p className={classes.cardCost}>$120/yr</p>
+                    <p className={classes.cardFree}>2 months free</p>
+                  </div>
+                  )
+                }
               </div>
             </div>
-            <div className={classes.card}>
+            <div className={classes.card + " " + (personalInfo.plan === "Pro" ? classes.selected : "")} onClick={() => changeSelection(2)}>
               <img src={pro} />
               <div className={classes.cardContent}>
                 <p className={classes.cardTitle}>Pro</p>
-                <p className={classes.cardCost}>$15/mo</p>
+                {category === "monthly" ? <p className={classes.cardCost}>$15/mo</p> :
+                  (<div>
+                    <p className={classes.cardCost}>$150/yr</p>
+                    <p className={classes.cardFree}>2 months free</p>
+                  </div>
+                  )
+                }
               </div>
             </div>
           </div>
           <div className={classes.switch}>
-            <p>Monthly</p>
+            <p className={category === "monthly" ? classes.switchActive : null}>Monthly</p>
             <AntSwitch
-              defaultChecked
+              checked={category === "yearly"}
+              value={category}
               inputProps={{ "aria-label": "ant design" }}
+              onChange={(e) => switchCategory(e.target.checked)}
             />
-            <p>Yearly</p>
+            <p className={category === "yearly" ? classes.switchActive : null}>Yearly</p>
           </div>
         </div>
       </div>

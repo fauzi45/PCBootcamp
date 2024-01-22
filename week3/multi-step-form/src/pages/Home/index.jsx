@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {  setStep, setUsernameDispatcher } from "./action";
+import { setStep, setProfileDispatch } from "./action";
 
 import AddOn from "../../components/AddOn";
 import Button from "../../components/Button";
@@ -16,11 +16,6 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const currentStep = useSelector((state) => state.homeReducer.step);
-  const usernameState = useSelector((state) => state.homeReducer.username);
-
-  const onSubmit = () => {
-    console.log(usernameState);
-  }
   const stepHanlder = () => {
     if (currentStep === 5) {
       dispatch(setStep(1));
@@ -33,10 +28,23 @@ const Home = () => {
     dispatch(setStep(currentStep - 1));
   };
 
+  const stepHandlerStart = () => {
+    dispatch(setProfileDispatch({
+      name: "",
+      email: "",
+      phoneNumber: "",
+      plan: "",
+      categoryRedux: "",
+      planValue: "",
+      addOns: [],
+    }));
+    dispatch(setStep(1));
+  };
+
   const renderComponent = () => {
     switch (currentStep) {
       case 1:
-        return <InfoPersonal  />;
+        return <InfoPersonal />;
       case 2:
         return <Plan />;
       case 3:
@@ -154,7 +162,9 @@ const Home = () => {
           <div className={classes.kanan}>
             <div className={classes.containerContent}>{renderComponent()}</div>
             {currentStep === 5 ? (
-              ""
+              <div className={classes.backButton} onClick={stepHandlerStart}>
+                Go Back
+              </div>
             ) : (
               <div className={classes.action}>
                 {currentStep === 1 ? (
@@ -200,7 +210,7 @@ const Home = () => {
             {currentStep === 4 ? (
               <Button onClick={stepHanlder} text={"Confirm"} />
             ) : (
-              <Button onClick={()=> {stepHanlder(); onSubmit();}} text={"Next Step"} />
+              <Button onClick={() => { stepHanlder(); }} text={"Next Step"} />
             )}
           </div>
         )}

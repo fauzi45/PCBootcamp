@@ -23,6 +23,10 @@
       @include apply-at-lg-size {
         @include directionY;
       }
+      .selected {
+        @extend .card;
+        background-color: $Magnolia;
+      }
       .card {
         img {
           width: 35px;
@@ -41,7 +45,7 @@
         }
         .cardContent {
           @include directionY;
-          gap: 3px;
+          gap: 5px;
           .cardTitle {
             font-weight: $FontWeightBold;
             color: $Marineblue;
@@ -52,6 +56,13 @@
             font-weight: $FontWeightRegular;
             font-size: 13px;
             color: $Coolgray;
+            font-family: $FontStyle;
+          }
+          .cardFree{
+            margin-top: 2px;
+            font-weight: $FontWeightRegular;
+            font-size: 12px;
+            color: $Marineblue;
             font-family: $FontStyle;
           }
         }
@@ -65,14 +76,17 @@
       padding: 1rem;
       font-size: 14px;
       font-weight: $FontWeightBold;
-      color: $Marineblue;
+      color: $Coolgray;
       font-family: $FontStyle;
       gap: 1rem;
+      .switchActive {
+        color: $Marineblue;
+      }
       -webkit-border-radius: 10px;
       -moz-border-radius: 10px;
       -ms-border-radius: 10px;
       -o-border-radius: 10px;
-      @include apply-at-lg-size{
+      @include apply-at-lg-size {
         width: 100%;
       }
     }
