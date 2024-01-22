@@ -1,0 +1,80 @@
+@import "../../styles/base.scss";
+
+.container {
+  @include directionY;
+  .title {
+    font-weight: $FontWeightBold;
+    color: $Marineblue;
+    font-family: $FontStyle;
+  }
+  .desc {
+    margin-top: 0.7rem;
+    font-weight: $FontWeightRegular;
+    color: $Coolgray;
+    font-family: $FontStyle;
+  }
+  .content {
+    @include directionY;
+    margin-top: 2rem;
+    gap: 0.5rem;
+    .containercard {
+      @include directionX;
+      gap: 1rem;
+      @include apply-at-lg-size {
+        @include directionY;
+      }
+      .card {
+        img {
+          width: 35px;
+          height: 35px;
+        }
+        cursor: pointer;
+        width: 30%;
+        padding: 1rem;
+        gap: 2rem;
+        border: $Lightgray solid 1px;
+        @include directionY;
+        border-radius: 8px;
+        @include apply-at-lg-size {
+          width: 100%;
+          @include directionX;
+        }
+        .cardContent {
+          @include directionY;
+          gap: 3px;
+          .cardTitle {
+            font-weight: $FontWeightBold;
+            color: $Marineblue;
+            font-size: 14px;
+            font-family: $FontStyle;
+          }
+          .cardCost {
+            font-weight: $FontWeightRegular;
+            font-size: 13px;
+            color: $Coolgray;
+            font-family: $FontStyle;
+          }
+        }
+      }
+    }
+    .switch {
+      @include directionX;
+      border-radius: 10px;
+      background-color: $Magnolia;
+      justify-content: center;
+      padding: 1rem;
+      font-size: 14px;
+      font-weight: $FontWeightBold;
+      color: $Marineblue;
+      font-family: $FontStyle;
+      gap: 1rem;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+      @include apply-at-lg-size{
+        width: 100%;
+      }
+    }
+  }
+}

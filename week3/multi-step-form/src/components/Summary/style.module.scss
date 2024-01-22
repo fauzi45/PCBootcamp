@@ -1,0 +1,93 @@
+@import "../../styles/base.scss";
+
+.container {
+  @include directionY;
+  .title {
+    font-weight: $FontWeightBold;
+    color: $Marineblue;
+    font-family: $FontStyle;
+  }
+  .desc {
+    margin-top: 0.7rem;
+    font-weight: $FontWeightRegular;
+    color: $Coolgray;
+    font-family: $FontStyle;
+  }
+  .content {
+    @include directionY;
+    margin-top: 2rem;
+    gap: 0.5rem;
+    .wrapper {
+      @include directionY;
+      gap: 1rem;
+      border-radius: 5px;
+      padding: 1rem;
+      background-color: $Magnolia;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      @include apply-at-lg-size {
+        width: 100%;
+      }
+      .contentRow {
+        @include directionX;
+        justify-content: space-between;
+        align-items: center;
+        .cost {
+          font-weight: $FontWeightBold;
+          color: $Marineblue;
+          font-size: 13px;
+          font-family: $FontStyle;
+        }
+        .costBot {
+          @extend .cost;
+          font-weight: $FontWeightRegular;
+        }
+        .topContentLeft {
+          @include directionY;
+          gap: 5px;
+          .contentTitle {
+            font-weight: $FontWeightBold;
+            color: $Marineblue;
+            font-size: 13px;
+            font-family: $FontStyle;
+          }
+          .contentChange {
+            text-decoration: none;
+            font-weight: $FontWeightRegular;
+            color: $Coolgray;
+            font-size: 13px;
+            font-family: $FontStyle;
+          }
+          .contentChange:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      .garis {
+        height: 1px;
+        background-color: $Lightgray;
+      }
+    }
+    .TotalCost {
+      @include directionX;
+      padding: 1rem;
+      justify-content: space-between;
+      .totalText {
+        font-weight: $FontWeightRegular;
+        font-size: 13px;
+        color: $Coolgray;
+        font-family: $FontStyle;
+      }
+      .totalCostNumber{
+        font-weight: $FontWeightBold;
+        color: $Marineblue;
+        font-family: $FontStyle;
+      }
+      @include apply-at-lg-size {
+        width: 100%;
+      }
+    }
+  }
+}

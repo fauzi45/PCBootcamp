@@ -1,0 +1,211 @@
+@import "../../styles/base.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background-color: $Magnolia;
+  width: 100vw;
+  height: 100vh;
+  @include directionY;
+  justify-content: center;
+  align-items: center;
+  @include apply-at-lg-size {
+    @include directionY;
+    justify-content: start;
+  }
+  .atas {
+    display: none;
+    @include apply-at-lg-size {
+      display: block;
+      background: url("../../assets/images/bg-sidebar-mobile.svg");
+      background-size: cover;
+      height: 30%;
+      background-position: bottom;
+      background-repeat: no-repeat;
+      width: 100%;
+      .containerStepAtas {
+        @include directionX;
+        justify-content: center;
+        margin-top: 1rem;
+        gap: 1rem;
+        .circleTop {
+          display: flex;
+          cursor: pointer;
+          justify-content: center;
+          align-items: center;
+          width: 30px;
+          color: $White;
+          font-weight: $FontWeightBold;
+          font-family: $FontStyle;
+          height: 30px;
+          border-radius: 20px;
+          border: $White solid 1px;
+          -webkit-border-radius: 20px;
+          -moz-border-radius: 20px;
+          -ms-border-radius: 20px;
+          -o-border-radius: 20px;
+        }
+        .circleActive {
+          @extend .circleTop;
+          background-color: $Pastelblue;
+          color: $Marineblue;
+        }
+      }
+    }
+  }
+  .wrapper {
+    width: 60%;
+    height: 75%;
+    border-radius: 50px;
+    @include directionX;
+    background-color: $White;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    @include apply-at-lg-size {
+      height: auto;
+      position: absolute;
+      width: 90%;
+      margin-top: 5rem;
+    }
+    .kiri {
+      background: url("../../assets/images/bg-sidebar-desktop.svg");
+      background-size: cover;
+      background-position: bottom;
+      background-repeat: no-repeat;
+      width: 30%;
+      border-radius: 10px;
+      margin: 0.8rem;
+      height: 95%;
+      @include directionY;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+      @include apply-at-lg-size {
+        display: none;
+      }
+      .containerStep {
+        margin: 1.5rem;
+        width: 80%;
+        height: 50%;
+        gap: 1.5rem;
+        @include directionY;
+        .step {
+          @include directionX;
+          gap: 0.5rem;
+          .circle {
+            display: flex;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            color: $White;
+            font-weight: $FontWeightBold;
+            font-family: $FontStyle;
+            height: 30px;
+            border-radius: 20px;
+            border: $White solid 1px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            -o-border-radius: 20px;
+          }
+          .circleActive {
+            @extend .circle;
+            background-color: $Pastelblue;
+            color: $Marineblue;
+          }
+          .content {
+            @include directionY;
+            gap: 0.2rem;
+            .title {
+              font-size: 12px;
+              color: $Coolgray;
+              font-weight: $FontWeightMedium;
+              font-family: $FontStyle;
+            }
+            .desc {
+              color: $White;
+              font-size: 13px;
+              font-weight: $FontWeightBold;
+              font-family: $FontStyle;
+            }
+          }
+        }
+      }
+    }
+    .kanan {
+      width: 60%;
+      @include apply-at-lg-size {
+        width: 90%;
+      }
+      height: 95%;
+      @include directionY;
+      .containerContent {
+        margin: 1.5rem;
+        height: 100%;
+      }
+      .action {
+        .backButton {
+          color: $Coolgray;
+          padding: 10px 10px;
+          width: 20%;
+          height: 25%;
+          margin: 1rem;
+          text-align: center;
+          border-radius: 5px;
+          font-family: $FontStyle;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 14px;
+          cursor: pointer;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          -ms-border-radius: 5px;
+          -o-border-radius: 5px;
+        }
+        display: block;
+        @include directionX;
+        justify-content: space-between;
+        @include apply-at-lg-size {
+          display: none;
+        }
+      }
+    }
+  }
+  .footer {
+    display: none;
+    @include apply-at-lg-size {
+      .backButton {
+        color: $Coolgray;
+        padding: 10px 10px;
+        width: 20%;
+        height: 25%;
+        margin: 1rem;
+        text-align: center;
+        border-radius: 5px;
+        font-family: $FontStyle;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        cursor: pointer;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+      }
+      @include directionX;
+      width: 100%;
+      justify-content: space-between;
+      height: 10%;
+      background-color: $White;
+      position: absolute;
+      bottom: 0;
+    }
+  }
+}

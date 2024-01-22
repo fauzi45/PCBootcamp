@@ -1,0 +1,23 @@
+@import "../../styles/base.scss";
+.container {
+  @include directionY;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  .title {
+    font-weight: $FontWeightBold;
+    color: $Marineblue;
+    font-family: $FontStyle;
+    font-size: 24px;
+  }
+  .desc{
+    font-weight: $FontWeightRegular;
+    color: $Coolgray;
+    font-size: 13px;
+    font-family: $FontStyle;
+    text-align: center;
+    line-height: 1.2rem;
+  }
+}
