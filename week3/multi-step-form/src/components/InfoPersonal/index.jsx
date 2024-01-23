@@ -66,7 +66,7 @@ const InfoPersonal = () => {
             <p className={classes.subtitle}>Phone Number</p>
             <input
               required
-              type="text"
+              type="number"
               name="phoneNumber"
               placeholder="e.g. +1 234 567 890"
               onChange={handleProfileChange}

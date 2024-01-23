@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setStep, setProfileDispatch } from "./action";
 
+import toast, { Toaster } from "react-hot-toast";
+
 import AddOn from "../../components/AddOn";
 import Button from "../../components/Button";
 import InfoPersonal from "../../components/InfoPersonal";
@@ -16,6 +18,8 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const currentStep = useSelector((state) => state.homeReducer.step);
+  const personalInfoRedux = useSelector((state) => state.homeReducer.profile);
+
   const stepHanlder = () => {
     if (currentStep === 5) {
       dispatch(setStep(1));
@@ -29,15 +33,17 @@ const Home = () => {
   };
 
   const stepHandlerStart = () => {
-    dispatch(setProfileDispatch({
-      name: "",
-      email: "",
-      phoneNumber: "",
-      plan: "",
-      categoryRedux: "",
-      planValue: "",
-      addOns: [],
-    }));
+    dispatch(
+      setProfileDispatch({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        plan: "",
+        categoryRedux: "",
+        planValue: "",
+        addOns: [],
+      })
+    );
     dispatch(setStep(1));
   };
 
@@ -56,6 +62,33 @@ const Home = () => {
       default:
         return <InfoPersonal />;
         break;
+    }
+  };
+
+  const isValidEmail = (email) => {
+    // Basic email validation using regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const ValidateForm = () => {
+    if (!personalInfoRedux.name) {
+      toast.error("Data nama masih kosong.");
+    } else if (!personalInfoRedux.email) {
+      toast.error("Data email masih kosong");
+    } else if (!isValidEmail(personalInfoRedux.email)) {
+      toast.error("Data email invalid");
+    } else if (!personalInfoRedux.phoneNumber) {
+      toast.error("Data Nomor Telepon masih kosong.");
+    } else if (currentStep === 2) {
+      if (!personalInfoRedux.plan) {
+        toast.error("Data Plan masih kosong, silahkan isi");
+      }
+      else{
+        stepHanlder();
+      }
+    } else {
+      stepHanlder();
     }
   };
 
@@ -162,6 +195,7 @@ const Home = () => {
           <div className={classes.kanan}>
             <div className={classes.containerContent}>{renderComponent()}</div>
             {currentStep === 5 ? (
+              
               <div className={classes.backButton} onClick={stepHandlerStart}>
                 Go Back
               </div>
@@ -184,7 +218,7 @@ const Home = () => {
                 {currentStep === 4 ? (
                   <Button onClick={stepHanlder} text={"Confirm"} />
                 ) : (
-                  <Button onClick={stepHanlder} text={"Next Step"} />
+                  <Button onClick={ValidateForm} text={"Next Step"} />
                 )}
               </div>
             )}
@@ -210,10 +244,16 @@ const Home = () => {
             {currentStep === 4 ? (
               <Button onClick={stepHanlder} text={"Confirm"} />
             ) : (
-              <Button onClick={() => { stepHanlder(); }} text={"Next Step"} />
+              <Button
+                onClick={() => {
+                  ValidateForm();
+                }}
+                text={"Next Step"}
+              />
             )}
           </div>
         )}
+        <Toaster />
       </div>
     </>
   );

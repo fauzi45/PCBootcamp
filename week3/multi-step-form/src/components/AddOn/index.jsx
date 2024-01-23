@@ -16,26 +16,46 @@ const AddOn = () => {
     addOns: personalInfoRedux.addOns || [],
   });
 
+  const [isActiveOSE, setIsActiveOSE] = useState();
+
   const dispatch = useDispatch();
 
-  const handleCheckboxChange = (addOnName) => {
-    // Toggle the checkbox status for the selected add-on
-    const updatedAddOns = personalInfo.addOns.includes(addOnName)
-      ? personalInfo.addOns.filter((addOn) => addOn !== addOnName)
-      : [...personalInfo.addOns, addOnName];
+  const handleCheckboxChange = (addOnName, cost) => {
+    const updatedAddOns = personalInfo.addOns.filter(
+      (addOn) => addOn.name !== addOnName
+    );
 
-    // Update the state with the new add-ons array
+    if (!personalInfo.addOns.some((addOn) => addOn.name === addOnName)) {
+      updatedAddOns.push({ name: addOnName, cost });
+    }
+
     setPersonalInfo((prevPersonalInfo) => ({
       ...prevPersonalInfo,
       addOns: updatedAddOns,
+      isActiveOS: isActiveOSE,
     }));
   };
 
+  const handleContainerClick = (addOnName, cost) => {
+    handleCheckboxChange(addOnName, cost);
+  };
+
   useEffect(() => {
-    // Use useEffect to automatically dispatch the updated profile when add-ons change
+    if (personalInfoRedux.isActiveOS === true) {
+      setIsActiveOSE(personalInfoRedux.isActiveOS);
+    } else {
+      setIsActiveOSE(false);
+    }
+  }, []);
+
+  useEffect(() => {
     dispatch(setProfileDispatch(personalInfo));
   }, [personalInfo, dispatch]);
 
+  const checkAddOn = (value) => {
+    let isSelected = personalInfo.addOns.find((c) => c.name === value);
+    return isSelected ? classes.active : classes.Containerbox;
+  };
 
   return (
     <>
@@ -45,39 +65,102 @@ const AddOn = () => {
           Add-ons help enchance your gaming experience.
         </h5>
         <div className={classes.content}>
-          <div className={classes.Containerbox}>
+          <div
+            className={checkAddOn("Online Service")}
+            onClick={() => {
+              handleContainerClick(
+                "Online Service",
+                personalInfo.categoryRedux === "monthly" ? "1" : "10"
+              );
+            }}
+          >
             <div className={classes.check}>
-              <input type="checkbox" checked={personalInfo.addOns.includes("onlineService")}
-                onChange={() => handleCheckboxChange("onlineService")}
+              <input
+                type="checkbox"
+                checked={personalInfo.addOns.some(
+                  (addOn) => addOn.name === "Online Service"
+                )}
+                onChange={() => {
+                  handleCheckboxChange(
+                    "Online Service",
+                    personalInfo.categoryRedux === "monthly" ? "1" : "10"
+                  );
+                }}
               />
               <div className={classes.checkContent}>
                 <p className={classes.checkTitle}>Online Services</p>
                 <p className={classes.checkDesc}>Access to multiplayer games</p>
               </div>
             </div>
-            <p className={classes.boxCost}>{personalInfo.categoryRedux === "monthly" ? "$1/mo" : "$10/yr"}</p>
+            <p className={classes.boxCost}>
+              {personalInfo.categoryRedux === "monthly" ? "$1/mo" : "$10/yr"}
+            </p>
           </div>
-          <div className={classes.Containerbox}>
+          <div
+            className={checkAddOn("Larger Storage")}
+            onClick={() => {
+              handleContainerClick(
+                "Larger Storage",
+                personalInfo.categoryRedux === "monthly" ? "2" : "20"
+              );
+              !isActiveOSE ? setIsActiveOSE(true) : setIsActiveOSE(false);
+            }}
+          >
             <div className={classes.check}>
-              <input type="checkbox" checked={personalInfo.addOns.includes("Larger Storage")}
-                onChange={() => handleCheckboxChange("Larger Storage")} />
+              <input
+                type="checkbox"
+                checked={personalInfo.addOns.some(
+                  (addOn) => addOn.name === "Larger Storage"
+                )}
+                onChange={() => {
+                  handleCheckboxChange(
+                    "Larger Storage",
+                    personalInfo.categoryRedux === "monthly" ? "2" : "20"
+                  );
+                  !isActiveOSE ? setIsActiveOSE(true) : setIsActiveOSE(false);
+                }}
+              />
               <div className={classes.checkContent}>
                 <p className={classes.checkTitle}>Larger Storage</p>
                 <p className={classes.checkDesc}>Extra 1TB of cloud save</p>
               </div>
             </div>
-            <p className={classes.boxCost}>{personalInfo.categoryRedux === "monthly" ? "$2/mo" : "$20/yr"}</p>
+            <p className={classes.boxCost}>
+              {personalInfo.categoryRedux === "monthly" ? "$2/mo" : "$20/yr"}
+            </p>
           </div>
-          <div className={classes.Containerbox}>
+          <div
+            className={checkAddOn("Customizable Profile")}
+            onClick={() =>
+              handleContainerClick(
+                "Customizable Profile",
+                personalInfo.categoryRedux === "monthly" ? "2" : "20"
+              )
+            }
+          >
             <div className={classes.check}>
-              <input type="checkbox" checked={personalInfo.addOns.includes("Customizable Profile")}
-                onChange={() => handleCheckboxChange("Customizable Profile")} />
+              <input
+                type="checkbox"
+                checked={personalInfo.addOns.some(
+                  (addOn) => addOn.name === "Customizable Profile"
+                )}
+                onChange={() =>
+                  handleCheckboxChange(
+                    "Customizable Profile",
+                    personalInfo.categoryRedux === "monthly" ? "2" : "20"
+                  )
+                }
+              />
               <div className={classes.checkContent}>
                 <p className={classes.checkTitle}>Customizable Profile</p>
-                <p className={classes.checkDesc}>Custom theme on your profile</p>
+                <p className={classes.checkDesc}>
+                  Custom theme on your profile
+                </p>
               </div>
             </div>
-            <p className={classes.boxCost}>{personalInfo.categoryRedux === "monthly" ? "$2/mo" : "$20/yr"}</p>
+            <p className={classes.boxCost}>
+              {personalInfo.categoryRedux === "monthly" ? "$2/mo" : "$20/yr"}
+            </p>
           </div>
         </div>
       </div>

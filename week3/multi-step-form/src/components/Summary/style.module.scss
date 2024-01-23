@@ -30,6 +30,15 @@
       @include apply-at-lg-size {
         width: 100%;
       }
+      .nodata {
+        @include directionX;
+        align-items: center;
+        justify-content: center;
+        font-weight: $FontWeightRegular;
+        color: $Coolgray;
+        font-size: 13px;
+        font-family: $FontStyle;
+      }
       .contentRow {
         @include directionX;
         justify-content: space-between;
@@ -80,7 +89,7 @@
         color: $Coolgray;
         font-family: $FontStyle;
       }
-      .totalCostNumber{
+      .totalCostNumber {
         font-weight: $FontWeightBold;
         color: $Marineblue;
         font-family: $FontStyle;

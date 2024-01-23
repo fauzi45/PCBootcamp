@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setProfileDispatch } from "../../pages/Home/action";
 import { useState, useEffect } from "react";
 import { setStep } from "../../pages/Home/action";
@@ -23,7 +23,16 @@ const Summary = () => {
 
   useEffect(() => {
     setTotal(personalInfo.planValue);
-  },[])
+  }, []);
+
+  useEffect(() => {
+    const newTotalCost = personalInfo.addOns.reduce((total, addOn) => {
+      return total + parseFloat(addOn.cost.replace(/[^\d.-]/g, ""));
+    }, 0);
+
+    setTotal(newTotalCost + personalInfo.planValue);
+    dispatch(setProfileDispatch(personalInfo));
+  }, [personalInfo, dispatch]);
 
   return (
     <>
@@ -36,28 +45,45 @@ const Summary = () => {
           <div className={classes.wrapper}>
             <div className={classes.contentRow}>
               <div className={classes.topContentLeft}>
-                <p className={classes.contentTitle}>{personalInfo.plan} ({personalInfo.categoryRedux})</p>
-                <Link onClick={() => dispatch(setStep(2))} className={classes.contentChange}>Change</Link>
+                <p className={classes.contentTitle}>
+                  {personalInfo.plan} ({personalInfo.categoryRedux})
+                </p>
+                <Link
+                  onClick={() => dispatch(setStep(2))}
+                  className={classes.contentChange}
+                >
+                  Change
+                </Link>
               </div>
-              <p className={classes.cost}>${personalInfo.planValue}/mo</p>
+              <p className={classes.cost}>
+                ${personalInfo.planValue}/
+                {personalInfo.categoryRedux === "monthly" ? "mo" : "yr"}
+              </p>
             </div>
             <div className={classes.garis} />
-            <div className={classes.contentRow}>
-              <div className={classes.topContentLeft}>
-                <p className={classes.contentChange}>Online Services</p>
-              </div>
-              <p className={classes.costBot}>+$1/mo</p>
-            </div>
-            <div className={classes.contentRow}>
-              <div className={classes.topContentLeft}>
-                <p className={classes.contentChange}>Larger Storage</p>
-              </div>
-              <p className={classes.costBot}>+$2/mo</p>
-            </div>
+            
+            { personalInfo.addOns.length > 0 ?
+            personalInfo.addOns.map((addon, index) => {
+              return (
+                <div key={index} className={classes.contentRow}>
+                  <div className={classes.topContentLeft}>
+                    <p className={classes.contentChange}>{addon.name}</p>
+                  </div>
+                  <p className={classes.costBot}>+${addon.cost}/{personalInfo.categoryRedux === "monthly" ? "mo" : "yr"}</p>
+                </div>
+              );
+            })
+            :
+            <p className={classes.nodata}>No add-ons</p>
+          }
           </div>
           <div className={classes.TotalCost}>
-            <p className={classes.totalText}>Total (per {personalInfo.categoryRedux})</p>
-            <p className={classes.totalCostNumber}>+${total}/mo</p>
+            <p className={classes.totalText}>
+              Total (per {personalInfo.categoryRedux})
+            </p>
+            <p className={classes.totalCostNumber}>
+              +${total}/{personalInfo.categoryRedux === "monthly" ? "mo" : "yr"}
+            </p>
           </div>
         </div>
       </div>
