@@ -1,14 +1,16 @@
 @import '@styles/base';
 
 .headerWrapper {
-  background-color: var(--color-bg) !important;
-  box-shadow: 0 0.25rem 0.75rem rgba(25, 49, 83, 0.2) !important;
+  background-color: transparent;
+  
   position: sticky;
+  z-index: 1000;
   top: 0;
   .contentWrapper {
     @include directionX;
     color: var(--color-text);
     padding: 1rem;
+    padding-left: 2rem;
     align-items: center;
     justify-content: space-between;
     font-size: 1rem;
@@ -17,18 +19,6 @@
       @include directionX;
       cursor: pointer;
       align-items: center;
-
-      .logo {
-        width: 1.5rem;
-        height: 1.5rem;
-        margin-right: 0.5rem;
-      }
-      .title {
-        font-weight: 400;
-        font-size: 24px;
-        color: $color-black;
-        font-family: 'Poppins', sans-serif;
-      }
     }
 
     .toolbar {
@@ -65,7 +55,10 @@
     }
   }
 }
-
+.scrolled {
+  background-color: $color-background-navbar;
+  box-shadow: 0 0.25rem 0.75rem rgba(25, 49, 83, 0.2) !important; /* Warna latar belakang navbar saat di-scroll */
+}
 .menu {
   @include directionX;
   align-items: center;

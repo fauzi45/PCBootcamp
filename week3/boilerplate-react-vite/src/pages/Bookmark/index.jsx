@@ -10,7 +10,7 @@ import SearchFilter from '@components/SearchFilter';
 import Button from '@components/Button';
 import Card from '@components/Card';
 
-const Home = () => {
+const Bookmark = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,13 +19,8 @@ const Home = () => {
 
   return (
     <div className={classes.container}>
-      <Jumbotron />
       <div className={classes.title}>
-        <FormattedMessage id="home_text_title" />
-      </div>
-      <div className={classes.filter}>
-        <SearchFilter placeholder={<FormattedMessage id="home_text_button" />} />
-        <Button text={<FormattedMessage id="home_text_button" />} />
+        <FormattedMessage id="bookmark_text_title" />
       </div>
       <div className={classes.content}>
         <Card />
@@ -39,4 +34,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Bookmark;

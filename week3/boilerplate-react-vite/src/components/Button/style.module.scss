@@ -1,0 +1,17 @@
+@import '../../styles/base.scss';
+
+.button {
+  color: white;
+  width: 10%;
+  height: 50px;
+  padding: 0px 15px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  border-radius: 0px 5px 5px 0px;
+  background: $color-background-button;
+}

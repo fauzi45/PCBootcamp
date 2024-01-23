@@ -10,4 +10,7 @@ export default {
   jumbotron_text_title: 'Perjalanan yang pernah Anda impikan.',
   jumbotron_text_desc: 'Kami membuat sebuah alat agar Anda dapat dengan mudah menyimpan dan berbagi kenangan perjalanan Anda. Tapi masih banyak lagi.',
   home_text_title: 'Perjalanan',
+  home_text_filter_placeholder: 'Cari Perjalanan...',
+  home_text_button: 'Cari',
+  bookmark_text_title: 'Penanda Buku',
 };
