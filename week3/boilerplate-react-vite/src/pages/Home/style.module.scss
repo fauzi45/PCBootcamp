@@ -1,0 +1,28 @@
+@import '../../styles/base.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: auto;
+  @include directionY;
+  width: 100%;
+  .title {
+    width: fit-content;
+    color: $color-black;
+    font-family: $FontStyleRoboto;
+    font-size: 48px;
+    font-style: normal;
+    margin: 49px 42px;
+    font-weight: $FontWeightBlack;
+    line-height: normal;
+  }
+  .filter {
+    width: 90%;
+    @include directionY;
+    justify-content: center;
+    align-items: center;
+  }
+}

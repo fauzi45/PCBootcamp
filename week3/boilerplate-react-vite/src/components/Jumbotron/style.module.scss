@@ -1,0 +1,32 @@
+@import '../../styles/base.scss';
+
+
+.container {
+  background-image: url('../../assets/images/jumbotron.jpg');
+  height: 510px;
+  @include directionY;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  .content {
+    @include directionY;
+    gap: 14px;
+    margin: 7rem 5rem;
+    .title {
+      color: $color-white;
+      width: 525px;
+      font-family: $FontStyleRoboto;
+      font-size: 64px;
+      font-style: italic;
+      font-weight: 100;
+    }
+    .desc {
+      color: $color-white;
+      font-family: $FontStyleRoboto;
+      font-size: 24px;
+      font-style: italic;
+      font-weight: 100;
+      line-height: normal;
+    }
+  }
+}
