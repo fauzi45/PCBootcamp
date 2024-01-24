@@ -1,7 +1,6 @@
-import { SET_NAVBAR_TRANS } from "./constants";
+import { DO_LOGIN } from "./constants";
 
-
-export const setNavbarTrans = (navbar) => ({
-  type: SET_NAVBAR_TRANS,
-  navbar,
+export const doLoginAction = (formData) => ({
+    type: DO_LOGIN,
+    formData
 });

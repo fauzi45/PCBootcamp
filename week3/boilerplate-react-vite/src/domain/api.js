@@ -7,7 +7,8 @@ const urls = {
   ping: 'ping.json',
   register: 'user/register',
   login: 'user/login',
-  journey: 'post'
+  journey: 'post',
+  getDetailJourney: 'post/detail/'
 };
 
 export const callAPI = async (endpoint, method, header = {}, params = {}, data = {}) => {
@@ -40,3 +41,5 @@ export const login = (login) => {
 }
 
 export const fetchJourney = () => callAPI(urls.journey, 'GET');
+
+export const fetchJourneyDetail = (id) => callAPI(`${urls.getDetailJourney}${id}`, 'GET')

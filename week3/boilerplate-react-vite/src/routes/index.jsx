@@ -32,7 +32,7 @@ const routes = [
     layout: MainLayout,
   },
   {
-    path: '/detail',
+    path: '/:id',
     name: 'Detail',
     protected: false,
     component: Detail,

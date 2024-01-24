@@ -9,7 +9,7 @@ function* doFetchJourney() {
   yield put(setLoading(true));
   try {
     const response = yield call(fetchJourney);
-    yield put(setJourney(response));
+    yield put(setJourney(response.data));
   } catch (error) {
     console.log(error)
   }

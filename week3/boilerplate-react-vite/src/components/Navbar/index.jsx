@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import NightsStayIcon from '@mui/icons-material/NightsStay';
+
+import { createStructuredSelector } from 'reselect';
 
 import { setLocale, setTheme } from '@containers/App/actions';
 
@@ -18,7 +18,7 @@ import logoBlack from '../../assets/images/IconBlack.png';
 import profile from '../../assets/images/profile.jpg';
 import Button from '@components/Button';
 
-const Navbar = ({ locale, theme }) => {
+const Navbar = ({ locale, theme, token }) => {
   const [scrolled, setScrolled] = useState(false);
   const [isLogin, isSetLogin] = useState(false);
   const dispatch = useDispatch();
@@ -69,10 +69,9 @@ const Navbar = ({ locale, theme }) => {
 
   return (
     <div className={`${classes.headerWrapper} ${scrolled ? classes.scrolled : ''}`} data-testid="navbar">
-      {console.log(scrolled)}
       <div className={classes.contentWrapper}>
         <div className={classes.logoImage} onClick={goHome}>
-          <img src={scrolled ? logoBlack : logo} alt="" />
+          <img className={classes.logoFont} src={scrolled ? logoBlack : logo} alt="" />
         </div>
         <div className={classes.toolbar}>
           <div className={classes.toggle} onClick={handleClick}>
@@ -80,12 +79,12 @@ const Navbar = ({ locale, theme }) => {
             <div className={classes.lang}>{locale}</div>
             <ExpandMoreIcon />
           </div>
-          {isLogin ? (
+          {token ? (
             <Avatar className={classes.avatar} src={profile} />
           ) : (
             <div className={classes.Containerbutton}>
-              <div className={`${classes.button} ${scrolled ? classes.buttonActive : ''}`}><FormattedMessage id="navbar_text_login" /></div>
-              <Button text={<FormattedMessage id="navbar_text_register" />} />
+              <div onClick={() => navigate('/login')} className={`${classes.button} ${scrolled ? classes.buttonActive : ''}`}><FormattedMessage id="navbar_text_login" /></div>
+              <Button onClick={() => navigate('/register')} text={<FormattedMessage id="navbar_text_register" />} />
             </div>
           )}
         </div>
@@ -118,4 +117,8 @@ Navbar.propTypes = {
   theme: PropTypes.string,
 };
 
-export default Navbar;
+const mapStateToProps = createStructuredSelector({
+  token: (state) => state.client.token,
+});
+
+export default connect(mapStateToProps)(Navbar);

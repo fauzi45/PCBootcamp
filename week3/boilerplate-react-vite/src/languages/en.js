@@ -13,6 +13,7 @@ export default {
   jumbotron_text_desc: 'We made a tool so you can easily keep & share your travel memories. But there is a lot more',
   home_text_title: 'Journey',
   home_text_filter_placeholder: 'Find Journey...',
+  text_no_data: 'No Data',
   home_text_button: 'Search',
   bookmark_text_title: 'Bookmark',
   journey_text_title: 'New Journey',

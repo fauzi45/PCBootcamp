@@ -13,6 +13,7 @@ export default {
   jumbotron_text_desc: 'Kami membuat sebuah alat agar Anda dapat dengan mudah menyimpan dan berbagi kenangan perjalanan Anda. Tapi masih banyak lagi.',
   home_text_title: 'Perjalanan',
   home_text_filter_placeholder: 'Cari Perjalanan...',
+  text_no_data: 'Tidak ada Data',
   home_text_button: 'Cari',
   bookmark_text_title: 'Penanda Buku',
   journey_text_title: 'Perjalanan Baru',

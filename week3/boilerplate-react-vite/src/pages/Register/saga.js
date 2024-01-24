@@ -6,7 +6,6 @@ import { register } from '@domain/api';
 function* doRegister({ user }) {
   try {
     const response = yield call(register, user);
-    yield put(setUser(response));
   } catch (error) {
     console.log(error);
   }

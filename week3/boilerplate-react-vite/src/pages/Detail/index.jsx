@@ -1,48 +1,61 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
 
-import { ping } from '@containers/App/actions';
+import PropTypes from 'prop-types';
 
-import example from '../../assets/images/example.jpg';
+import { createStructuredSelector } from 'reselect';
+
+import { selectJourneyDetail } from './selectors';
+
+import { useParams } from 'react-router-dom';
+
 import classes from './style.module.scss';
+import { getDetail } from './actions';
 
-const Detail = () => {
+const Detail = ({ journeyDetail }) => {
   const dispatch = useDispatch();
+  const [data, setData] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(ping());
-  }, [dispatch]);
+    dispatch(getDetail(id, () => {
+      navigate("/notfound");
+    }));
+  }, []);
+
+  useEffect(() => {
+    if (journeyDetail) {
+      setData(journeyDetail);
+    }
+  }, [journeyDetail]);
+
 
   return (
     <div className={classes.container}>
+      {console.log(journeyDetail)}
       <div className={classes.content}>
         <div className={classes.title}>
-          <p className={classes.titlePost}>Bersemayam di tanah Dewata</p>
-          <p className={classes.userPost}>Fadhil</p>
+          <p className={classes.titlePost}>{data?.title}</p>
+          <p className={classes.userPost}>{data.user?.fullname}</p>
         </div>
-        <p className={classes.date}>17 Oktober 2020</p>
-        <img src={example} className={classes.image} />
+        <p className={classes.date}>{data?.timestamp}</p>
+        <img src={data?.imageUrl} className={classes.image} />
         <p className={classes.desc}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-          make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-          sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-          PageMaker including versions of Lorem Ipsum. Contrary to popular belief, Lorem Ipsum is not simply random
-          text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard
-          McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin
-          words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical
-          literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de
-          Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a
-          treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem
-          ipsum dolor sit amet..", comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since
-          the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et
-          Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the
-          1914 translation by H. Rackham.
+          <div
+            dangerouslySetInnerHTML={{ __html: data.description }}
+          />
         </p>
       </div>
     </div>
   );
 };
 
-export default Detail;
+Detail.propTypes = {
+  journeyDetail: PropTypes.object,
+};
+
+const mapStateToProps = createStructuredSelector({
+  journeyDetail: selectJourneyDetail
+});
+
+export default connect(mapStateToProps)(Detail);

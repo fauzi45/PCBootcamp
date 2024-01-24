@@ -3,12 +3,12 @@ import { SET_LOGIN } from '@containers/Client/constants';
 import { setLogin, setToken } from '@containers/Client/actions';
 import { login } from '@domain/api';
 import { setLoading } from '@containers/App/actions';
-function* doLogin(action) {
+import { DO_LOGIN } from './constants';
+function* doLogin({formData}) {
     setLoading(true);
     try {
-      const response = yield call(login, action.login);
-    //   yield put(setLogin(true));
-    console.log(response)
+      const response = yield call(login, formData);
+      yield put(setLogin(true));
       yield put(setToken(response.data.token));
     } catch (error) {
       console.log(error);
@@ -17,6 +17,6 @@ function* doLogin(action) {
   }
   
   export default function* loginSaga() {
-    yield takeLatest(SET_LOGIN, doLogin);
+    yield takeLatest(DO_LOGIN, doLogin);
   }
   

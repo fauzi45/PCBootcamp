@@ -1,63 +1,80 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import PropTypes from 'prop-types';
-import { ping } from '@containers/App/actions';
 
 import classes from './style.module.scss';
 import Jumbotron from '@components/Jumbotron';
 import SearchFilter from '@components/SearchFilter';
 import Card from '@components/Card';
 import ButtonSearch from '@components/ButtonSearch';
+
 import { setLogin, setToken } from '@containers/Client/actions';
 import { selectJourney } from './selectors';
 import { createStructuredSelector } from 'reselect';
-import { fetchJourney } from '@domain/api';
 import { getFetchJourney } from './actions';
 
 const Home = ({ journey }) => {
   const dispatch = useDispatch();
+  const intl = useIntl();
+
+  const [data, setData] = useState([]);
+  const [search, setSearch] = useState('');
 
   const logout = () => {
-    dispatch(setLogin(null));
+    dispatch(setLogin(false));
     dispatch(setToken(null));
   };
 
   useEffect(() => {
     dispatch(getFetchJourney());
+    setData(journey);
   }, [dispatch]);
+
+  const applyFilter = () => {
+    if (search != "") {
+      setData(journey.filter(e => e.title.toLowerCase().indexOf(search.toLowerCase()) !== -1));
+    } else {
+      setData(journey);
+    }
+  }
+
+  const handleSearch = () => {
+    applyFilter();
+  };
 
   return (
     <div className={classes.container}>
       <Jumbotron />
-      <ButtonSearch onClick={logout}></ButtonSearch>
+      <ButtonSearch onClick={logout} text={"Logout"} />
       <div className={classes.title}>
         <FormattedMessage id="home_text_title" />
       </div>
       <div className={classes.filter}>
-        <SearchFilter placeholder={<FormattedMessage id="home_text_button" />} />
-        <ButtonSearch text={<FormattedMessage id="home_text_button" />} />
+        <SearchFilter onChange={(e) => setSearch(e.target.value)} value={search} placeholder={intl.formatMessage({ id: "home_text_filter_placeholder" })} />
+        <ButtonSearch onClick={handleSearch} text={<FormattedMessage id="home_text_button" />} />
       </div>
-      <div className={classes.content}>
-        {console.log(journey)}
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
+      {!data?.length > 0 ? <div className={classes.noContent}><FormattedMessage id="text_no_data" /></div> :
+        <div className={classes.content}>
+          {
+            data.map((item) => (
+              <Card key={item.id} data={item} />
+            ))}
+        </div>
+      }
     </div>
   );
 };
 
 Home.propTypes = {
-  journey: PropTypes.object,
+  journey: PropTypes.array,
+  token: PropTypes.string
 };
 
 const mapStateToProps = createStructuredSelector({
-  journey: selectJourney
+  journey: selectJourney,
+  token: (state) => state.client.token,
 });
 
 export default connect(mapStateToProps)(Home);

@@ -1,1 +1,1 @@
-export const SET_NAVBAR_TRANS = 'SET_NAVBAR_TRANS';
+ export const DO_LOGIN = 'login/DO_LOGIN';

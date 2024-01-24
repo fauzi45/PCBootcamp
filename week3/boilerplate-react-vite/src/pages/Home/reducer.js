@@ -2,7 +2,7 @@ import { produce } from "immer";
 import { SET_JOURNEY } from "./constants";
 
 export const initialState = {
-  journey: {},
+  journey: [],
 };
 
 export const storedKey = ['journey'];
