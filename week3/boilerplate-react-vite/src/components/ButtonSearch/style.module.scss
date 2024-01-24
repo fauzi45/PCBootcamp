@@ -2,21 +2,16 @@
 
 .button {
   color: white;
-  height: 30px;
+  width: 10%;
+  height: 50px;
   padding: 0px 15px;
   text-align: center;
-  font-weight: 700;
   justify-content: center;
   align-items: center;
   display: flex;
-  cursor: pointer;
-  font-size: 14px;
-  border: 1px solid $color-background-button;
+  font-size: 18px;
   font-family: "Poppins", sans-serif;
-  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 0px 5px 5px 0px;
   background: $color-background-button;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
 }

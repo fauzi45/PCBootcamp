@@ -1,0 +1,1 @@
+export const SET_NAVBAR_TRANS = 'SET_NAVBAR_TRANS';

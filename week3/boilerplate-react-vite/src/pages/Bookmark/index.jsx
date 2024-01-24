@@ -7,7 +7,7 @@ import { ping } from '@containers/App/actions';
 import classes from './style.module.scss';
 import Jumbotron from '@components/Jumbotron';
 import SearchFilter from '@components/SearchFilter';
-import Button from '@components/Button';
+import Button from '@components/ButtonSearch';
 import Card from '@components/Card';
 
 const Bookmark = () => {

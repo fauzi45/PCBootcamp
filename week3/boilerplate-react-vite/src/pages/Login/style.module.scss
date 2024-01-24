@@ -1,0 +1,98 @@
+@import '../../styles/base.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  @include directionX;
+  width: 100%;
+  background-color: $background-post;
+  padding-bottom: 5rem;
+  justify-content: center;
+  .box {
+    width: 416px;
+    @include directionY;
+    margin-top: 2rem;
+    height: 516px;
+    border-radius: 10px;
+    align-items: center;
+    background: #fff;
+    box-shadow:
+      4px 4px 20px 0px rgba(0, 0, 0, 0.25),
+      0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    .containerbox {
+      width: 90%;
+      margin-top: 51px;
+      @include directionY;
+      gap: 35px;
+      .title {
+        display: flex;
+        justify-content: center;
+        color: $color-black;
+        font-family: 'Poppins', sans-serif;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+      .group {
+        .text {
+          color: $color-black;
+          font-family: 'Poppins', sans-serif;
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+        }
+        .input {
+          width: 90%;
+          padding: 0px 10px;
+          height: 50px;
+          border: 2px solid rgba(210, 210, 210, 0.25);
+          background: rgba(210, 210, 210, 0.25);
+          border-radius: 5px;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          -ms-border-radius: 5px;
+          -o-border-radius: 5px;
+        }
+      }
+      .button {
+        color: white;
+        height: 30px;
+        padding: 10px 15px;
+        text-align: center;
+        font-weight: 700;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        cursor: pointer;
+        font-size: 24px;
+        border: 1px solid $color-background-button;
+        font-family: 'Poppins', sans-serif;
+        border-radius: 5px;
+        background: $color-background-button;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+      }
+      .noacc {
+        color: #b1b1b1;
+        display: flex;
+        justify-content: center;
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 100;
+        line-height: normal;
+      }
+    }
+  }
+}

@@ -19,11 +19,44 @@
     font-weight: $FontWeightBlack;
     line-height: normal;
   }
-  .filter {
+  .profile {
     @include directionX;
     justify-content: center;
-    align-items: center;
-    margin: 2rem 0;
+    .card {
+      width: 200px;
+      height: 276px;
+      @include directionY;
+      align-items: center;
+      .cardProfile {
+        width: 200px;
+        object-fit: cover;
+        height: 200px;
+        border-radius: 200px;
+        border: 1px solid #2e86de;
+        margin-bottom: 22px;
+      }
+      .cardName {
+        color: $color-black;
+        font-family: 'Roboto', sans-serif;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+      }
+      .cardEmail {
+        color: $color-shortdesc;
+        font-family: "Roboto",sans-serif;
+        font-size: 18px;
+        font-style: italic;
+        font-weight: 100;
+        line-height: normal;
+      }
+    }
+  }
+  .addNew{
+    @include directionX;
+    justify-content: center;
+    margin: 32px 0;
   }
   .content {
     display: grid;
@@ -35,7 +68,7 @@
       grid-template-columns: repeat(1, 1fr);
     }
     @include apply-at-sm-size {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(1, 1fr);
     }
     @include apply-at-lg-size {
       grid-template-columns: repeat(2, 1fr);

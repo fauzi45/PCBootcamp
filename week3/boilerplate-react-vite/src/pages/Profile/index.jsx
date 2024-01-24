@@ -5,12 +5,12 @@ import { FormattedMessage } from 'react-intl';
 import { ping } from '@containers/App/actions';
 
 import classes from './style.module.scss';
-import Jumbotron from '@components/Jumbotron';
-import SearchFilter from '@components/SearchFilter';
-import Button from '@components/Button';
 import Card from '@components/Card';
 
-const Home = () => {
+import profile from '../../assets/images/profile.jpg';
+import Button from '@components/Button';
+
+const Profile = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,13 +19,18 @@ const Home = () => {
 
   return (
     <div className={classes.container}>
-      <Jumbotron />
       <div className={classes.title}>
-        <FormattedMessage id="home_text_title" />
+        <FormattedMessage id="profile_text_title" />
       </div>
-      <div className={classes.filter}>
-        <SearchFilter placeholder={<FormattedMessage id="home_text_button" />} />
-        <Button text={<FormattedMessage id="home_text_button" />} />
+      <div className={classes.profile}>
+        <div className={classes.card}>
+          <img className={classes.cardProfile} src={profile} alt="" />
+          <div className={classes.cardName}>Fauzi</div>
+          <div className={classes.cardEmail}>fauzi45fajar@gmail.com</div>
+        </div>
+      </div>
+      <div className={classes.addNew}>
+        <Button text={<FormattedMessage id="button_text_add" />} />
       </div>
       <div className={classes.content}>
         <Card />
@@ -33,10 +38,10 @@ const Home = () => {
         <Card />
         <Card />
         <Card />
-        <Card /> 
+        <Card />
       </div>
     </div>
   );
 };
 
-export default Home;
+export default Profile;

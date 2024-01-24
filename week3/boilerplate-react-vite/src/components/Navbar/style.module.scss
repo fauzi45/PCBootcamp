@@ -2,7 +2,6 @@
 
 .headerWrapper {
   background-color: transparent;
-  
   position: sticky;
   z-index: 1000;
   top: 0;
@@ -33,7 +32,6 @@
         @include directionX;
         align-items: center;
         cursor: pointer;
-
         .avatar {
           width: 1.2rem;
           height: 1.2rem;
@@ -50,6 +48,34 @@
 
         .arrow {
           font-size: 1rem;
+        }
+      }
+      .Containerbutton {
+        @include directionX;
+        margin-left: 5px;
+        gap: 15px;
+        .button {
+          color: white;
+          height: 30px;
+          padding: 0px 30px;
+          cursor: pointer;
+          border: 1px solid $color-white;
+          text-align: center;
+          font-weight: 700;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          font-size: 14px;
+          font-family: 'Poppins', sans-serif;
+          border-radius: 5px;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          -ms-border-radius: 5px;
+          -o-border-radius: 5px;
+        }
+        .buttonActive {
+          background-color: $color-background-button;
+          color: $color-white;
         }
       }
     }

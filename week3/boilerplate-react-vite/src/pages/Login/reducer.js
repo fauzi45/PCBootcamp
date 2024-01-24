@@ -1,17 +1,15 @@
 import { produce } from "immer";
-import { SET_JOURNEY } from "./constants";
+import { SET_NAVBAR_TRANS } from "./constants";
 
 export const initialState = {
-  journey: {},
+  navbarTrans: "",
 };
-
-export const storedKey = ['journey'];
 
 const homeReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
-      case SET_JOURNEY:
-        draft.journey = action.journey;
+      case SET_NAVBAR_TRANS:
+        draft.navbarTrans = action.navbarTrans;
         break;
       default:
         break;

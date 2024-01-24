@@ -5,6 +5,9 @@ import request from '@utils/request';
 
 const urls = {
   ping: 'ping.json',
+  register: 'user/register',
+  login: 'user/login',
+  journey: 'post'
 };
 
 export const callAPI = async (endpoint, method, header = {}, params = {}, data = {}) => {
@@ -28,3 +31,12 @@ export const callAPI = async (endpoint, method, header = {}, params = {}, data =
 };
 
 export const ping = () => callAPI(urls.ping, 'get');
+
+export const register = (user) => {
+  return callAPI(urls.register, 'POST', {}, {}, user);
+}
+export const login = (login) => {
+  return callAPI(urls.login, 'POST', {}, {}, login);
+}
+
+export const fetchJourney = () => callAPI(urls.journey, 'GET');

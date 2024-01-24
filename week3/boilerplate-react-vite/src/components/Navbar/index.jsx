@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -14,10 +14,13 @@ import { setLocale, setTheme } from '@containers/App/actions';
 
 import classes from './style.module.scss';
 import logo from '../../assets/images/Icon.png';
-import logoBlack from "../../assets/images/IconBlack.png";
+import logoBlack from '../../assets/images/IconBlack.png';
+import profile from '../../assets/images/profile.jpg';
+import Button from '@components/Button';
 
 const Navbar = ({ locale, theme }) => {
   const [scrolled, setScrolled] = useState(false);
+  const [isLogin, isSetLogin] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,18 +30,14 @@ const Navbar = ({ locale, theme }) => {
   useEffect(() => {
     if (location?.pathname === '/') {
       setScrolled(false);
-      handleScroll();
       window.addEventListener('scroll', handleScroll);
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
     } else {
       setScrolled(true);
     }
-  }, []);
+  }, [location]);
 
   const handleScroll = () => {
-    if (window.scrollY > 405) {
+    if (window.scrollY > 410) {
       setScrolled(true);
     } else {
       setScrolled(false);
@@ -70,20 +69,25 @@ const Navbar = ({ locale, theme }) => {
 
   return (
     <div className={`${classes.headerWrapper} ${scrolled ? classes.scrolled : ''}`} data-testid="navbar">
-    {console.log(scrolled)}
+      {console.log(scrolled)}
       <div className={classes.contentWrapper}>
         <div className={classes.logoImage} onClick={goHome}>
           <img src={scrolled ? logoBlack : logo} alt="" />
         </div>
         <div className={classes.toolbar}>
-          <div className={classes.theme} onClick={handleTheme} data-testid="toggleTheme">
-            {theme === 'light' ? <NightsStayIcon /> : <LightModeIcon />}
-          </div>
           <div className={classes.toggle} onClick={handleClick}>
             <Avatar className={classes.avatar} src={locale === 'id' ? '/id.png' : '/en.png'} />
             <div className={classes.lang}>{locale}</div>
             <ExpandMoreIcon />
           </div>
+          {isLogin ? (
+            <Avatar className={classes.avatar} src={profile} />
+          ) : (
+            <div className={classes.Containerbutton}>
+              <div className={`${classes.button} ${scrolled ? classes.buttonActive : ''}`}><FormattedMessage id="navbar_text_login" /></div>
+              <Button text={<FormattedMessage id="navbar_text_register" />} />
+            </div>
+          )}
         </div>
         <Menu open={open} anchorEl={menuPosition} onClose={handleClose}>
           <MenuItem onClick={() => onSelectLang('id')} selected={locale === 'id'}>
