@@ -9,13 +9,13 @@ export const setAddBookmark = (bookmark) => ({
     bookmark
 });
 
-export const addToBookmark = (id, cb) => ({
+export const addToBookmark = (id,cb) => ({
     type: ADD_TO_BOOKMARK,
     id,
     cb
 });
 
-export const removeToBookmark = (id, cb) => ({
+export const removeToBookmark = (id,cb) => ({
     type: REMOVE_TO_BOOKMARK,
     id,
     cb

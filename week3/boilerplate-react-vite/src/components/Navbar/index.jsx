@@ -70,7 +70,7 @@ const Navbar = ({ locale, theme, token }) => {
   return (
     <div className={`${classes.headerWrapper} ${scrolled ? classes.scrolled : ''}`} data-testid="navbar">
       <div className={classes.contentWrapper}>
-        <div className={classes.logoImage} onClick={goHome}>
+        <div className={classes.logoImage} onClick={() => goHome()}>
           <img className={classes.logoFont} src={scrolled ? logoBlack : logo} alt="" />
         </div>
         <div className={classes.toolbar}>

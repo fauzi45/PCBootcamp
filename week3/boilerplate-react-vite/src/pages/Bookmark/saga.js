@@ -16,7 +16,7 @@ function* doFetchBookmark() {
   yield put(setLoading(false));
 }
 
-function* doAddToBookmark({ id,cb }) {
+function* doAddToBookmark({ id , cb}) {
   yield put(setLoading(true));
   try {
     yield call(AddBookmarkapi, id);
@@ -31,6 +31,7 @@ function* doRemoveToBookmark({ id,cb }) {
   yield put(setLoading(true));
   try {
     yield call(deleteBookmark, id);
+    cb();
   } catch (error) {
     console.log(error);
   }

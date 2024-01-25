@@ -5,7 +5,7 @@ import bookmarke from '../../assets/icons/bookmark.svg';
 import convertDate from '@utils/convertDate';
 import { useNavigate } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
-import { addToBookmark, removeToBookmark } from '@pages/Bookmark/actions';
+import { addToBookmark, getFetchBookmark, removeToBookmark } from '@pages/Bookmark/actions';
 import { selectBookmark } from '@pages/Bookmark/selectors';
 
 import { createStructuredSelector } from 'reselect';
@@ -19,12 +19,13 @@ const Card = ({ data, bookmark }) => {
   };
 
   const deleteBookmarkHandler = (id) => {
-    dispatch(removeToBookmark(data?.id));
+    dispatch(removeToBookmark(String(id), () => dispatch(getFetchBookmark())));
   };
 
   useEffect(() => {
     fetchFavorites();
-  }, [dispatch,bookmark]);
+  }, [dispatch, bookmark]);
+
 
   const fetchFavorites = async () => {
     try {
@@ -40,14 +41,14 @@ const Card = ({ data, bookmark }) => {
     }
   };
 
-  const handleClick = () => {
-    dispatch(addToBookmark(String(data?.id)));
+  const handleClick = (id) => {
+    dispatch(addToBookmark(String(id), () => dispatch(getFetchBookmark())));
   };
 
   return (
     <div className={classes.container}>
       <img src={data?.imageUrl} className={classes.image} />
-      <div className={classes.containerCircle} onClick={isBookmarked ? deleteBookmarkHandler : handleClick}>
+      <div className={classes.containerCircle} onClick={isBookmarked ? () => deleteBookmarkHandler(data?.id) : () => handleClick(data?.id)}>
         <div className={isBookmarked ? classes.circleBookActive : classes.circleBook}>
           <img className={classes.bookmark} src={bookmarke} />
         </div>

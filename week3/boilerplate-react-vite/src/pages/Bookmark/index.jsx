@@ -25,6 +25,7 @@ const Bookmark = ({ bookmark }) => {
 
   return (
     <div className={classes.container}>
+    {console.log(bookmark)}
       <div className={classes.title}>
         <FormattedMessage id="bookmark_text_title" />
       </div>
@@ -35,7 +36,7 @@ const Bookmark = ({ bookmark }) => {
       ) : (
         <div className={classes.content}>
           {data.map((item) => (
-            <Card key={item.id} data={item.postBookmarks} />
+            <Card key={item.id} data={item.postBookmarks}  />
           ))}
         </div>
       )}

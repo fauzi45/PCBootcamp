@@ -15,6 +15,7 @@ import { selectJourney } from './selectors';
 import { createStructuredSelector } from 'reselect';
 import { getFetchJourney } from './actions';
 import { selectBookmark } from '@pages/Bookmark/selectors';
+import { getFetchBookmark } from '@pages/Bookmark/actions';
 
 const Home = ({ journey, bookmark }) => {
   const dispatch = useDispatch();
@@ -82,6 +83,8 @@ const Home = ({ journey, bookmark }) => {
 Home.propTypes = {
   journey: PropTypes.array,
   token: PropTypes.string,
+  bookmark: PropTypes.array,
+
 };
 
 const mapStateToProps = createStructuredSelector({
