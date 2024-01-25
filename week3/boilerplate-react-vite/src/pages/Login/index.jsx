@@ -19,6 +19,8 @@ const Login = ({ token }) => {
   const onSubmit = () => {
     if (!email || !password) {
       toast.error('Email and Password cannot be empty');
+    } else if (!isValidEmail(email)) {
+      toast.error('Invalid email');
     } else {
       const dataUser = {
         email: encryptPayload(email),
@@ -33,6 +35,12 @@ const Login = ({ token }) => {
       navigate('/');
     }
   }, [token]);
+
+  const isValidEmail = (email) => {
+    // Basic email validation using regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   return (
     <div className={classes.container}>

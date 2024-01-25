@@ -1,12 +1,15 @@
 import { SET_USER } from './constants';
-import { takeLatest, call, put } from 'redux-saga/effects';
+import { takeLatest, call } from 'redux-saga/effects';
 import { register } from '@domain/api';
 
-function* doRegister({ user }) {
+import toast, { Toaster } from 'react-hot-toast';
+
+function* doRegister({ user,cb }) {
   try {
-    const response = yield call(register, user);
+    yield call(register, user);
+    cb();
   } catch (error) {
-    console.log(error);
+    toast.error("Email or Password is already exist");
   }
 }
 
