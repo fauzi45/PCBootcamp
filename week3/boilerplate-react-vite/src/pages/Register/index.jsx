@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch,connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
 import { useNavigate } from 'react-router-dom';
@@ -8,9 +8,11 @@ import { setUser } from './actions';
 import classes from './style.module.scss';
 import encryptPayload from '@utils/encryptionHelper';
 
+import { createStructuredSelector } from 'reselect';
 import toast, { Toaster } from 'react-hot-toast';
+import { selectToken } from '@containers/Client/selectors';
 
-const Register = () => {
+const Register = ({token}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -39,8 +41,13 @@ const Register = () => {
         navigate('/login');
       }));
     }
-
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [token]);
 
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -76,4 +83,8 @@ const Register = () => {
   );
 };
 
-export default Register;
+const mapStateToProps = createStructuredSelector({
+  token: selectToken,
+});
+
+export default connect(mapStateToProps)(Register);

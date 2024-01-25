@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { doLoginAction } from './actions';
 
 import toast, { Toaster } from 'react-hot-toast';
-
+import { selectToken } from '@containers/Client/selectors';
 
 const Login = ({ token }) => {
   const dispatch = useDispatch();
