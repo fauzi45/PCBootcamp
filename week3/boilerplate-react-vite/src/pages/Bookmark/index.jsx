@@ -10,6 +10,7 @@ import Card from '@components/Card';
 import { createStructuredSelector } from 'reselect';
 import { getFetchBookmark } from './actions';
 import { selectBookmark } from './selectors';
+import { selectToken } from '@containers/Client/selectors';
 
 const Bookmark = ({ bookmark }) => {
   const dispatch = useDispatch();
@@ -25,7 +26,6 @@ const Bookmark = ({ bookmark }) => {
 
   return (
     <div className={classes.container}>
-    {console.log(bookmark)}
       <div className={classes.title}>
         <FormattedMessage id="bookmark_text_title" />
       </div>
@@ -46,6 +46,7 @@ const Bookmark = ({ bookmark }) => {
 
 const mapStateToProps = createStructuredSelector({
   bookmark: selectBookmark,
+  token: selectToken
 });
 
 export default connect(mapStateToProps)(Bookmark);

@@ -9,8 +9,9 @@ import { addToBookmark, getFetchBookmark, removeToBookmark } from '@pages/Bookma
 import { selectBookmark } from '@pages/Bookmark/selectors';
 
 import { createStructuredSelector } from 'reselect';
+import { selectToken } from '@containers/Client/selectors';
 
-const Card = ({ data, bookmark }) => {
+const Card = ({ data, bookmark, token }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -48,11 +49,12 @@ const Card = ({ data, bookmark }) => {
   return (
     <div className={classes.container}>
       <img src={data?.imageUrl} className={classes.image} />
-      <div className={classes.containerCircle} onClick={isBookmarked ? () => deleteBookmarkHandler(data?.id) : () => handleClick(data?.id)}>
-        <div className={isBookmarked ? classes.circleBookActive : classes.circleBook}>
-          <img className={classes.bookmark} src={bookmarke} />
-        </div>
-      </div>
+      {token ?
+        <div className={classes.containerCircle} onClick={isBookmarked ? () => deleteBookmarkHandler(data?.id) : () => handleClick(data?.id)}>
+          <div className={isBookmarked ? classes.circleBookActive : classes.circleBook}>
+            <img className={classes.bookmark} src={bookmarke} />
+          </div>
+        </div> : ""}
       <div className={classes.content} onClick={gotToDetail}>
         <p className={classes.title}>{data?.title}</p>
         <p className={classes.date}>{`${convertDate(data?.timestamp)}, ${data?.user?.fullname}`}</p>
@@ -64,6 +66,7 @@ const Card = ({ data, bookmark }) => {
 
 const mapStateToProps = createStructuredSelector({
   bookmark: selectBookmark,
+  token: selectToken
 });
 
 export default connect(mapStateToProps)(Card);
