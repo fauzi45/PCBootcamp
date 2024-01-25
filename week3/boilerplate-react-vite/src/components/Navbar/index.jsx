@@ -29,10 +29,9 @@ const Navbar = ({ locale, theme, token }) => {
 
   useEffect(() => {
     if (location?.pathname === '/') {
-      setScrolled(false);
       window.addEventListener('scroll', handleScroll);
     } else {
-      setScrolled(true);
+      setScrolled(false);
     }
   }, [location]);
 

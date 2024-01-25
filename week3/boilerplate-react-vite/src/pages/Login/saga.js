@@ -1,9 +1,11 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { SET_LOGIN } from '@containers/Client/constants';
 import { setLogin, setToken } from '@containers/Client/actions';
 import { login } from '@domain/api';
 import { setLoading } from '@containers/App/actions';
 import { DO_LOGIN } from './constants';
+
+import toast, { Toaster } from 'react-hot-toast';
+
 function* doLogin({formData}) {
     setLoading(true);
     try {
@@ -11,7 +13,7 @@ function* doLogin({formData}) {
       yield put(setLogin(true));
       yield put(setToken(response.data.token));
     } catch (error) {
-      console.log(error);
+      toast.error("Password or Email is wrong");
     }
     setLoading(false);
   }

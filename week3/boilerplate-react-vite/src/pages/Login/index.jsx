@@ -8,27 +8,33 @@ import classes from './style.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { doLoginAction } from './actions';
 
-const Login = ({token}) => {
+import toast, { Toaster } from 'react-hot-toast';
+
+
+const Login = ({ token }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const onSubmit = () => {
-    const dataUser = {
-      email: encryptPayload(email),
-      password: encryptPayload(password),
-    };
-    dispatch(doLoginAction(dataUser));
+    if (!email || !password) {
+      toast.error('Email and Password cannot be empty');
+    } else {
+      const dataUser = {
+        email: encryptPayload(email),
+        password: encryptPayload(password),
+      };
+      dispatch(doLoginAction(dataUser));
+    }
   };
 
   useEffect(() => {
-    if(token) {
+    if (token) {
       navigate('/');
     }
-  },[token]);
+  }, [token]);
 
   return (
-
     <div className={classes.container}>
       <div className={classes.box}>
         <div className={classes.containerbox}>
@@ -48,12 +54,17 @@ const Login = ({token}) => {
           <div onClick={onSubmit} className={classes.button}>
             <FormattedMessage id="navbar_text_login" />
           </div>
-          <p className={classes.noacc}>Don't have an account? ? Klik Here</p>
+          <p onClick={() => navigate('/register')} className={classes.noacc}>Don't have an account? ? Klik Here</p>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };
+
+Login.prototypes = {
+  token: PropTypes.string,
+}
 
 const mapStateToProps = createStructuredSelector({
   token: (state) => state.client.token,
