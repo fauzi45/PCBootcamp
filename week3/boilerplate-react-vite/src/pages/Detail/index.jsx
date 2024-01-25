@@ -4,7 +4,7 @@ import { connect, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { createStructuredSelector } from 'reselect';
-
+import { useNavigate } from 'react-router-dom';
 import { selectJourneyDetail } from './selectors';
 
 import { useParams } from 'react-router-dom';
@@ -14,6 +14,7 @@ import { getDetail } from './actions';
 
 const Detail = ({ journeyDetail }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const { id } = useParams();
 
@@ -21,16 +22,18 @@ const Detail = ({ journeyDetail }) => {
     dispatch(getDetail(id));
   }, [dispatch]);
 
+
   useEffect(() => {
     if (journeyDetail) {
+      navigate(`/${journeyDetail?.id}`);
       setData(journeyDetail);
+    }else{
+      navigate('/');
     }
   }, [journeyDetail]);
 
-
   return (
     <div className={classes.container}>
-      {console.log(journeyDetail)}
       <div className={classes.content}>
         <div className={classes.title}>
           <p className={classes.titlePost}>{data?.title}</p>
@@ -38,11 +41,11 @@ const Detail = ({ journeyDetail }) => {
         </div>
         <p className={classes.date}>{data?.timestamp}</p>
         <img src={data?.imageUrl} className={classes.image} />
-        <p className={classes.desc}>
+        <div className={classes.desc}>
           <div
             dangerouslySetInnerHTML={{ __html: data.description }}
           />
-        </p>
+        </div>
       </div>
     </div>
   );
