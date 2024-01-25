@@ -1,6 +1,5 @@
 import { SET_USER } from './constants';
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { setUser } from './actions';
 import { register } from '@domain/api';
 
 function* doRegister({ user }) {

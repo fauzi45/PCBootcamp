@@ -27,7 +27,7 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    protected: false,
+    protected: true,
     component: Profile,
     layout: MainLayout,
   },

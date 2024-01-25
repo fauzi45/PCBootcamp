@@ -14,8 +14,9 @@ import { setLogin, setToken } from '@containers/Client/actions';
 import { selectJourney } from './selectors';
 import { createStructuredSelector } from 'reselect';
 import { getFetchJourney } from './actions';
+import { selectBookmark } from '@pages/Bookmark/selectors';
 
-const Home = ({ journey }) => {
+const Home = ({ journey, bookmark }) => {
   const dispatch = useDispatch();
   const intl = useIntl();
 
@@ -29,16 +30,19 @@ const Home = ({ journey }) => {
 
   useEffect(() => {
     dispatch(getFetchJourney());
-    setData(journey);
   }, [dispatch]);
 
+  useEffect(() => {
+    setData(journey);
+  }, [journey]);
+
   const applyFilter = () => {
-    if (search != "") {
-      setData(journey.filter(e => e.title.toLowerCase().indexOf(search.toLowerCase()) !== -1));
+    if (search != '') {
+      setData(journey.filter((e) => e.title.toLowerCase().indexOf(search.toLowerCase()) !== -1));
     } else {
       setData(journey);
     }
-  }
+  };
 
   const handleSearch = () => {
     applyFilter();
@@ -47,33 +51,41 @@ const Home = ({ journey }) => {
   return (
     <div className={classes.container}>
       <Jumbotron />
-      <ButtonSearch onClick={logout} text={"Logout"} />
+      <ButtonSearch onClick={logout} text={'Logout'} />
       <div className={classes.title}>
         <FormattedMessage id="home_text_title" />
       </div>
       <div className={classes.filter}>
-        <SearchFilter onChange={(e) => setSearch(e.target.value)} value={search} placeholder={intl.formatMessage({ id: "home_text_filter_placeholder" })} />
+        <SearchFilter
+          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+          placeholder={intl.formatMessage({ id: 'home_text_filter_placeholder' })}
+        />
         <ButtonSearch onClick={handleSearch} text={<FormattedMessage id="home_text_button" />} />
       </div>
-      {!data?.length > 0 ? <div className={classes.noContent}><FormattedMessage id="text_no_data" /></div> :
-        <div className={classes.content}>
-          {
-            data.map((item) => (
-              <Card key={item.id} data={item} />
-            ))}
+      {!data?.length > 0 ? (
+        <div className={classes.noContent}>
+          <FormattedMessage id="text_no_data" />
         </div>
-      }
+      ) : (
+        <div className={classes.content}>
+          {data.map((item) => {
+            return <Card data={item} key={item.id} />;
+          })}
+        </div>
+      )}
     </div>
   );
 };
 
 Home.propTypes = {
   journey: PropTypes.array,
-  token: PropTypes.string
+  token: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   journey: selectJourney,
+  bookmark: selectBookmark,
   token: (state) => state.client.token,
 });
 

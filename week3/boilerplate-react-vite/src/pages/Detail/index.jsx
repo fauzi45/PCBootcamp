@@ -18,10 +18,8 @@ const Detail = ({ journeyDetail }) => {
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getDetail(id, () => {
-      navigate("/notfound");
-    }));
-  }, []);
+    dispatch(getDetail(id));
+  }, [dispatch]);
 
   useEffect(() => {
     if (journeyDetail) {

@@ -1,0 +1,5 @@
+export const FETCH_BOOKMARK = 'FETCH_BOOKMARK';
+export const ADD_BOOKMARK = 'ADD_BOOKMARK';
+
+export const ADD_TO_BOOKMARK = 'ADD_TO_BOOKMARK';
+export const REMOVE_TO_BOOKMARK = 'REMOVE_TO_BOOKMARK';

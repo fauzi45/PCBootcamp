@@ -1,37 +1,50 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
 import { ping } from '@containers/App/actions';
 
 import classes from './style.module.scss';
-import Jumbotron from '@components/Jumbotron';
-import SearchFilter from '@components/SearchFilter';
-import Button from '@components/ButtonSearch';
 import Card from '@components/Card';
 
-const Bookmark = () => {
+import { createStructuredSelector } from 'reselect';
+import { getFetchBookmark } from './actions';
+import { selectBookmark } from './selectors';
+
+const Bookmark = ({ bookmark }) => {
   const dispatch = useDispatch();
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    dispatch(ping());
+    dispatch(getFetchBookmark());
   }, [dispatch]);
+
+  useEffect(() => {
+    setData(bookmark);
+  },[bookmark])
 
   return (
     <div className={classes.container}>
       <div className={classes.title}>
         <FormattedMessage id="bookmark_text_title" />
       </div>
-      <div className={classes.content}>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card /> 
-      </div>
+      {!bookmark?.length > 0 ? (
+        <div className={classes.noContent}>
+          <FormattedMessage id="text_no_data" />
+        </div>
+      ) : (
+        <div className={classes.content}>
+          {data.map((item) => (
+            <Card key={item.id} data={item.postBookmarks} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
-export default Bookmark;
+const mapStateToProps = createStructuredSelector({
+  bookmark: selectBookmark,
+});
+
+export default connect(mapStateToProps)(Bookmark);
