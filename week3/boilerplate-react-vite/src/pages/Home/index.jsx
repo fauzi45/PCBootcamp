@@ -19,7 +19,7 @@ import { selectBookmark } from '@pages/Bookmark/selectors';
 const Home = ({ journey, bookmark }) => {
   const dispatch = useDispatch();
   const intl = useIntl();
-
+  const [isBookmarked, setIsBookmarked] = useState(false);
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
 
@@ -66,6 +66,7 @@ const Home = ({ journey, bookmark }) => {
       {!data?.length > 0 ? (
         <div className={classes.noContent}>
           <FormattedMessage id="text_no_data" />
+          {console.log(bookmark)}
         </div>
       ) : (
         <div className={classes.content}>

@@ -18,7 +18,7 @@ const urls = {
 
   Allbookmark: 'bookmark',
   AddBookmark: 'bookmark/create',
-  removeBookmark: 'bookmark/remove/',
+  removeBookmark: 'bookmark/remove',
 };
 
 export const callAPI = async (endpoint, method, header = {}, params = {}, data = {}) => {
