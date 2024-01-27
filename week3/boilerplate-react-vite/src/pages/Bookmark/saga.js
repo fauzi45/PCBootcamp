@@ -16,10 +16,11 @@ function* doFetchBookmark() {
   yield put(setLoading(false));
 }
 
-function* doAddToBookmark({ id , cb}) {
+function* doAddToBookmark({ id, cb}) {
   yield put(setLoading(true));
   try {
-    yield call(AddBookmarkapi, id);
+    const response = yield call(AddBookmarkapi, id);
+    console.log(response);
     cb();
   } catch (error) {
     console.log(error);

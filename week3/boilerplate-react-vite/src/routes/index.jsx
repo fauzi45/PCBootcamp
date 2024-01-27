@@ -20,7 +20,7 @@ const routes = [
   {
     path: '/bookmark',
     name: 'Bookmark',
-    protected: false,
+    protected: true,
     component: Bookmark,
     layout: MainLayout,
   },

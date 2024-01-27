@@ -10,10 +10,12 @@ function* doLogin({formData}) {
     setLoading(true);
     try {
       const response = yield call(login, formData);
+      console.log(response?.data?.token);
+      const token = response?.data?.token;
       yield put(setLogin(true));
-      yield put(setToken(response.data.token));
+      yield put(setToken(token));
     } catch (error) {
-      toast.error("Password or Email is wrong");
+      toast.error("username atau password salah");
     }
     setLoading(false);
   }

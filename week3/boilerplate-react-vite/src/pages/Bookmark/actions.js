@@ -12,7 +12,7 @@ export const setAddBookmark = (bookmark) => ({
 export const addToBookmark = (id,cb) => ({
     type: ADD_TO_BOOKMARK,
     id,
-    cb
+    cb,
 });
 
 export const removeToBookmark = (id,cb) => ({

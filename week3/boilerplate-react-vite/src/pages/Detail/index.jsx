@@ -19,16 +19,15 @@ const Detail = ({ journeyDetail }) => {
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getDetail(id));
-  }, [dispatch]);
+    dispatch(getDetail(id, () => {
+      navigate("/notfound/error");
+    }));
+  }, []);
 
 
   useEffect(() => {
     if (journeyDetail) {
-      navigate(`/${journeyDetail?.id}`);
       setData(journeyDetail);
-    }else{
-      navigate('/');
     }
   }, [journeyDetail]);
 
@@ -43,8 +42,9 @@ const Detail = ({ journeyDetail }) => {
         <img src={data?.imageUrl} className={classes.image} />
         <div className={classes.desc}>
           <div
-            dangerouslySetInnerHTML={{ __html: data.description }}
+            dangerouslySetInnerHTML={{ __html: data.fullname }}
           />
+          
         </div>
       </div>
     </div>

@@ -10,27 +10,24 @@ import SearchFilter from '@components/SearchFilter';
 import Card from '@components/Card';
 import ButtonSearch from '@components/ButtonSearch';
 
-import { setLogin, setToken } from '@containers/Client/actions';
 import { selectJourney } from './selectors';
 import { createStructuredSelector } from 'reselect';
 import { getFetchJourney } from './actions';
 import { selectBookmark } from '@pages/Bookmark/selectors';
 import { getFetchBookmark } from '@pages/Bookmark/actions';
+import { selectToken } from '@containers/Client/selectors';
 
-const Home = ({ journey, bookmark }) => {
+const Home = ({ journey, token }) => {
   const dispatch = useDispatch();
   const intl = useIntl();
-  const [isBookmarked, setIsBookmarked] = useState(false);
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
 
-  const logout = () => {
-    dispatch(setLogin(false));
-    dispatch(setToken(null));
-  };
-
   useEffect(() => {
     dispatch(getFetchJourney());
+    if (token) {
+      dispatch(getFetchBookmark());
+    }
   }, [dispatch]);
 
   useEffect(() => {
@@ -52,7 +49,6 @@ const Home = ({ journey, bookmark }) => {
   return (
     <div className={classes.container}>
       <Jumbotron />
-      <ButtonSearch onClick={logout} text={'Logout'} />
       <div className={classes.title}>
         <FormattedMessage id="home_text_title" />
       </div>
@@ -67,7 +63,6 @@ const Home = ({ journey, bookmark }) => {
       {!data?.length > 0 ? (
         <div className={classes.noContent}>
           <FormattedMessage id="text_no_data" />
-          {console.log(bookmark)}
         </div>
       ) : (
         <div className={classes.content}>
@@ -82,15 +77,12 @@ const Home = ({ journey, bookmark }) => {
 
 Home.propTypes = {
   journey: PropTypes.array,
-  token: PropTypes.string,
-  bookmark: PropTypes.array,
-
+  token: PropTypes.string
 };
 
 const mapStateToProps = createStructuredSelector({
   journey: selectJourney,
-  bookmark: selectBookmark,
-  token: (state) => state.client.token,
+  token: selectToken,
 });
 
 export default connect(mapStateToProps)(Home);

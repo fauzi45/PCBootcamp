@@ -5,13 +5,17 @@ import { setDetail } from './actions';
 import { GET_DETAIL } from './constants';
 import { fetchJourneyDetail } from '@domain/api';
 
-function* doFetchJourney(action) {
+function* doFetchJourney({id,cb}) {
   yield put(setLoading(true));
   try {
-    const response = yield call(fetchJourneyDetail, action.id);
+    const response = yield call(fetchJourneyDetail, id);
     yield put(setDetail(response.data));
   } catch (error) {
-    console.log(error)
+    if(error?.response?.status === 404) {
+      cb();
+  } else {
+      yield put(showPopup());
+  }
   }
   yield put(setLoading(false));
 }
