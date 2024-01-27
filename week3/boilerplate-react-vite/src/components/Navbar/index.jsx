@@ -7,6 +7,8 @@ import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import NightsStayIcon from '@mui/icons-material/NightsStay';
 
 import { createStructuredSelector } from 'reselect';
 
@@ -17,14 +19,16 @@ import logo from '../../assets/images/Icon.png';
 import logoBlack from '../../assets/images/IconBlack.png';
 import profile from '../../assets/images/profile.jpg';
 import Button from '@components/Button';
+import Dropdown from '@components/Dropdown';
+import { selectToken } from '@containers/Client/selectors';
 
 const Navbar = ({ locale, theme, token }) => {
   const [scrolled, setScrolled] = useState(false);
-  const [isLogin, isSetLogin] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const [menuPosition, setMenuPosition] = useState(null);
+  const [openProfile, setOpenProfile] = useState(false);
   const open = Boolean(menuPosition);
 
   useEffect(() => {
@@ -73,13 +77,19 @@ const Navbar = ({ locale, theme, token }) => {
           <img className={classes.logoFont} src={scrolled ? logoBlack : logo} alt="" />
         </div>
         <div className={classes.toolbar}>
+          <div className={classes.theme} onClick={handleTheme} data-testid="toggleTheme">
+            {theme === 'light' ? <NightsStayIcon /> : <LightModeIcon />}
+          </div>
           <div className={classes.toggle} onClick={handleClick}>
             <Avatar className={classes.avatar} src={locale === 'id' ? '/id.png' : '/en.png'} />
             <div className={classes.lang}>{locale}</div>
             <ExpandMoreIcon />
           </div>
           {token ? (
-            <Avatar className={classes.avatar} src={profile} />
+            <div>
+              <Avatar className={classes.avatar} src={profile} onClick={() => setOpenProfile(!openProfile)} />
+              {openProfile && <Dropdown />}
+            </div>
           ) : (
             <div className={classes.Containerbutton}>
               <div onClick={() => navigate('/login')} className={`${classes.button} ${scrolled ? classes.buttonActive : ''}`}><FormattedMessage id="navbar_text_login" /></div>
@@ -114,10 +124,11 @@ Navbar.propTypes = {
   title: PropTypes.string,
   locale: PropTypes.string.isRequired,
   theme: PropTypes.string,
+  token: PropTypes.string
 };
 
 const mapStateToProps = createStructuredSelector({
-  token: (state) => state.client.token,
+  token: selectToken,
 });
 
 export default connect(mapStateToProps)(Navbar);
