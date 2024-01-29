@@ -22,6 +22,16 @@ const siswaDetail = async (request, reply) => {
   }
 };
 
+const siswaAdd = async (request,reply) => {
+    try {
+        const {name, kelas, jenisKelamin} = request.body;
+        const data = await SiswaHelper.createSiswa({name, kelas, jenisKelamin});
+        return reply.send(data);
+    } catch (error) {
+        console.log("error add data >>>>>>>>", error);
+    }
+}
+
 const deleteSiswa = async (request, reply) => {
     try {
       const { id } = request.params;
@@ -35,6 +45,7 @@ const deleteSiswa = async (request, reply) => {
   
 
 Router.get("/", siswa);
+Router.post("/", siswaAdd);
 Router.get("/:id",siswaDetail);
 Router.delete("/delete/:id", deleteSiswa);
 module.exports = Router;

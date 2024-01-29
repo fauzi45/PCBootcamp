@@ -41,8 +41,30 @@ const DeleteSiswa = async (id) => {
   }
 };
 
+const createSiswa = async (datas) => {
+  try {
+    const { name, kelas, jenisKelamin} = datas;
+    const data = fs.readFileSync(dataPath, "utf-8");
+    const jsonData = JSON.parse(data);
+    const createData = {
+      id: jsonData.length + 1,
+      name,
+      kelas,
+      jenisKelamin
+    }
+
+    jsonData.push(createData);
+    fs.writeFileSync(dataPath, JSON.stringify(jsonData));
+
+    return createData;
+  } catch (error) {
+    console.log("gagal menambahkan error");
+  }
+}
+
 module.exports = {
   getSiswaList,
   getSiswaDetail,
   DeleteSiswa,
+  createSiswa,
 };

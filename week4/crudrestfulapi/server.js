@@ -2,6 +2,8 @@ const express = require("express");
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 const siswa = require("./server/api/siswa");
 
 app.use("/siswa", siswa);
