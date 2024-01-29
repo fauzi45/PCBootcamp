@@ -22,7 +22,19 @@ const siswaDetail = async (request, reply) => {
   }
 };
 
+const deleteSiswa = async (request, reply) => {
+    try {
+      const { id } = request.params;
+      const data = await SiswaHelper.DeleteSiswa(id);
+      return reply.send(data);
+    } catch (err) {
+      console.log("error get");
+    }
+  };
+  
+  
 
 Router.get("/", siswa);
 Router.get("/:id",siswaDetail);
+Router.delete("/delete/:id", deleteSiswa);
 module.exports = Router;

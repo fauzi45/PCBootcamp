@@ -1,6 +1,5 @@
 const _ = require("lodash");
 const fs = require("fs");
-const path = require("path");
 
 const dataPath = (__dirname, "./assets/siswa.json");
 
@@ -30,9 +29,20 @@ const getSiswaDetail = async (id) => {
   }
 };
 
-
+const DeleteSiswa = async (id) => {
+  try {
+    const data = fs.readFileSync(dataPath, "utf-8");
+    const jsonData = JSON.parse(data);
+    const deleteSiswa = jsonData.filter((siswa) => String(siswa.id) !== id);
+    fs.writeFileSync(dataPath, JSON.stringify(deleteSiswa));
+    return Promise.resolve(deleteSiswa);
+  } catch (error) {
+    console.log("Gagal mendapatkan data siswa");
+  }
+};
 
 module.exports = {
   getSiswaList,
   getSiswaDetail,
+  DeleteSiswa,
 };
