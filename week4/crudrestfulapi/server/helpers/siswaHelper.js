@@ -10,6 +10,7 @@ const getSiswaList = async () => {
     return Promise.resolve(jsonData);
   } catch (error) {
     console.log(error, "<<<<< ERROR GET SISWA");
+    throw error; 
   }
 };
 
@@ -17,14 +18,14 @@ const getSiswaDetail = async (id) => {
   try {
     const data = fs.readFileSync(dataPath, "utf-8");
     const jsonData = JSON.parse(data);
-    console.log(jsonData);
-    const siswaDetail = jsonData.find((siswa) => String(siswa.id) === id);
-    if (!siswaDetail) {
-      console.log("Data siswa tidak ditemukan <<<<<");
+    const siswaDetail = jsonData.filter((siswa) => String(siswa.id) === id);
+    if (siswaDetail.length === 0) {
+      throw new Error("Data siswa tidak ditemukan");
     }
     return Promise.resolve(siswaDetail);
   } catch (error) {
     console.log("Gagal mendapatkan data siswa");
+    throw error; 
   }
 };
 
@@ -37,6 +38,7 @@ const DeleteSiswa = async (id) => {
     return Promise.resolve(deleteSiswa);
   } catch (error) {
     console.log("Gagal mendapatkan data siswa");
+    throw error; 
   }
 };
 
@@ -54,10 +56,10 @@ const createSiswa = async (datas) => {
 
     jsonData.push(createData);
     fs.writeFileSync(dataPath, JSON.stringify(jsonData));
-
     return createData;
   } catch (error) {
     console.log("gagal menambahkan error");
+    throw error; 
   }
 };
 
@@ -83,6 +85,7 @@ const updateSiswa = async (id, updatedDatas) => {
     return updatedSiswa;
   } catch (error) {
     console.log("gagal menambahkan error");
+    throw error; 
   }
 };
 
