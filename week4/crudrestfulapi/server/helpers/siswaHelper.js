@@ -58,7 +58,7 @@ const createSiswa = async (datas) => {
     fs.writeFileSync(dataPath, JSON.stringify(jsonData));
     return createData;
   } catch (error) {
-    console.log("gagal menambahkan error");
+    console.log("gagal menambahkan data siswa");
     throw error; 
   }
 };
