@@ -3,7 +3,6 @@ const fs = require("fs");
 
 const dataPath = (__dirname, "./assets/siswa.json");
 
-
 const getSiswaList = async () => {
   try {
     const data = fs.readFileSync(dataPath, "utf-8");
@@ -18,7 +17,7 @@ const getSiswaDetail = async (id) => {
   try {
     const data = fs.readFileSync(dataPath, "utf-8");
     const jsonData = JSON.parse(data);
-    console.log(jsonData)
+    console.log(jsonData);
     const siswaDetail = jsonData.find((siswa) => String(siswa.id) === id);
     if (!siswaDetail) {
       console.log("Data siswa tidak ditemukan <<<<<");
@@ -43,15 +42,15 @@ const DeleteSiswa = async (id) => {
 
 const createSiswa = async (datas) => {
   try {
-    const { name, kelas, jenisKelamin} = datas;
+    const { name, kelas, jenisKelamin } = datas;
     const data = fs.readFileSync(dataPath, "utf-8");
     const jsonData = JSON.parse(data);
     const createData = {
       id: jsonData.length + 1,
       name,
       kelas,
-      jenisKelamin
-    }
+      jenisKelamin,
+    };
 
     jsonData.push(createData);
     fs.writeFileSync(dataPath, JSON.stringify(jsonData));
@@ -60,11 +59,37 @@ const createSiswa = async (datas) => {
   } catch (error) {
     console.log("gagal menambahkan error");
   }
-}
+};
+
+const updateSiswa = async (id, updatedDatas) => {
+  try {
+    const { name, kelas, jenisKelamin } = updatedDatas;
+    const data = fs.readFileSync(dataPath, "utf-8");
+    const jsonData = JSON.parse(data);
+    const index = jsonData.findIndex((siswa) => String(siswa.id) === id);
+    if (index === -1) {
+      throw new Error("Siswa dengan ID tersebut tidak ditemukan");
+    }
+
+    const updatedSiswa = {
+      ...jsonData[index],
+      name: name || jsonData[index].name,
+      kelas: kelas || jsonData[index].kelas,
+      jenisKelamin: jenisKelamin || jsonData[index].jenisKelamin,
+    };
+
+    jsonData[index] = updatedSiswa;
+    fs.writeFileSync(dataPath, JSON.stringify(jsonData));
+    return updatedSiswa;
+  } catch (error) {
+    console.log("gagal menambahkan error");
+  }
+};
 
 module.exports = {
   getSiswaList,
   getSiswaDetail,
   DeleteSiswa,
   createSiswa,
+  updateSiswa,
 };
