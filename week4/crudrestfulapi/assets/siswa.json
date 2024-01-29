@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nama": "king arthur",
+    "kelas": "password1",
+    "profession": "king"
+  },
+  {
+    "id": 2,
+    "name": "rob kendal",
+    "password": "password3",
+    "profession": "code fiddler"
+  },
+  {
+    "id": 3,
+    "name": "teresa may",
+    "password": "password2",
+    "profession": "brexit destroyer"
+  }
+]
